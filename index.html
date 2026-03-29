@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-  index.html | Versão: 1.2.0 | Atualizado: 2026-03-29 | Descrição: Paleta vermelho chama + cinza escuro, hero claro e moderno
+  index.html | Versão: 1.3.0 | Atualizado: 2026-03-29 | Descrição: Paleta azul escuro + laranja (estilo empilhadeira), hero com fundo escuro
 -->
 <html lang="pt-BR">
 <head>
@@ -37,22 +37,22 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     
     :root {
-      /* CORES — Tema Chama (Vermelho + Cinza Escuro) */
-      --primaria: #dc2626;           /* vermelho chama */
-      --primaria-clara: #ef4444;     /* vermelho claro */
-      --primaria-escura: #b91c1c;    /* vermelho escuro */
-      --primaria-bg: #fef2f2;        /* vermelho bem claro */
+      /* CORES — Tema Empilhadeira (Azul Escuro + Laranja) */
+      --primaria: #0c4a6e;           /* azul petróleo escuro */
+      --primaria-clara: #0369a1;     /* azul médio */
+      --primaria-escura: #082f49;    /* azul mais escuro */
+      --primaria-bg: #f0f9ff;        /* azul bem claro */
       
-      --secundaria: #1f2937;         /* cinza escuro */
-      --secundaria-clara: #374151;
-      --secundaria-escura: #111827;
+      --secundaria: #f97316;         /* laranja vibrante */
+      --secundaria-clara: #fb923c;
+      --secundaria-escura: #ea580c;
       
       --verde-wpp: #25D366;
       
-      --cinza-bg: #f9fafb;
-      --cinza-texto: #111827;
-      --cinza-sub: #6b7280;
-      --borda: #e5e7eb;
+      --cinza-bg: #f8fafc;
+      --cinza-texto: #0f172a;
+      --cinza-sub: #64748b;
+      --borda: #e2e8f0;
       --branco: #ffffff;
       
       --radius: 16px;
@@ -185,11 +185,11 @@
        HERO
        ══════════════════════════════════════════════════════════════ */
     .hero {
-      background: linear-gradient(135deg, #ffffff 0%, #f3f4f6 100%);
+      background: linear-gradient(135deg, var(--primaria) 0%, var(--primaria-escura) 100%);
       padding: 80px 20px;
       position: relative;
       overflow: hidden;
-      color: var(--cinza-texto);
+      color: var(--branco);
     }
     
     .hero::before {
@@ -199,7 +199,7 @@
       right: -10%;
       width: 500px;
       height: 500px;
-      background: radial-gradient(circle, rgba(220,38,38,0.08) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(249,115,22,0.15) 0%, transparent 70%);
       border-radius: 50%;
     }
     
@@ -210,7 +210,7 @@
       left: -10%;
       width: 400px;
       height: 400px;
-      background: radial-gradient(circle, rgba(31,41,55,0.05) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
       border-radius: 50%;
     }
     
@@ -229,7 +229,7 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: var(--primaria);
+      background: var(--secundaria);
       color: var(--branco);
       font-size: 13px;
       font-weight: 600;
@@ -243,16 +243,16 @@
       font-weight: 900;
       line-height: 1.1;
       margin-bottom: 20px;
-      color: var(--secundaria);
+      color: var(--branco);
     }
     
     .hero h1 .destaque {
-      color: var(--primaria);
+      color: var(--secundaria);
     }
     
     .hero-desc {
       font-size: 18px;
-      color: var(--cinza-sub);
+      color: rgba(255,255,255,0.85);
       margin-bottom: 32px;
       line-height: 1.7;
       max-width: 500px;
@@ -282,7 +282,7 @@
     }
     
     .hero-search button {
-      background: var(--primaria);
+      background: var(--secundaria);
       color: var(--branco);
       border: none;
       padding: 16px 28px;
@@ -295,7 +295,7 @@
     }
     
     .hero-search button:hover {
-      background: var(--primaria-escura);
+      background: var(--secundaria-escura);
       transform: translateY(-1px);
     }
     
@@ -373,7 +373,7 @@
       display: block;
       font-size: 28px;
       font-weight: 900;
-      color: var(--primaria);
+      color: var(--secundaria);
     }
       font-weight: 800;
       margin-bottom: 4px;
@@ -494,7 +494,7 @@
     }
     
     .produto-card.destaque {
-      border-color: var(--primaria);
+      border-color: var(--secundaria);
     }
     
     .produto-card.destaque::before {
@@ -502,7 +502,7 @@
       position: absolute;
       top: 20px;
       right: -35px;
-      background: var(--primaria);
+      background: var(--secundaria);
       color: var(--branco);
       font-size: 11px;
       font-weight: 700;
@@ -552,7 +552,7 @@
     
     .produto-btn {
       display: block;
-      background: var(--primaria);
+      background: var(--secundaria);
       color: var(--branco);
       padding: 14px 24px;
       border-radius: var(--radius-btn);
@@ -561,7 +561,7 @@
     }
     
     .produto-btn:hover {
-      background: var(--primaria-escura);
+      background: var(--secundaria-escura);
       transform: translateY(-2px);
     }
     
@@ -685,7 +685,7 @@
       font-weight: 800;
       font-size: 24px;
       margin: 0 auto 20px;
-      box-shadow: 0 8px 20px rgba(220,38,38,0.3);
+      box-shadow: 0 8px 20px rgba(12,74,110,0.3);
     }
     
     .step-card h3 {
