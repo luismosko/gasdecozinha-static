@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-  index.html | Versão: 1.3.0 | Atualizado: 2026-03-29 | Descrição: Paleta azul escuro + laranja (estilo empilhadeira), hero com fundo escuro
+  index.html | Versão: 1.4.0 | Atualizado: 2026-03-29 | Descrição: Adicionado CTAs (WhatsApp + Ligar) e prova social no hero
 -->
 <html lang="pt-BR">
 <head>
@@ -256,6 +256,80 @@
       margin-bottom: 32px;
       line-height: 1.7;
       max-width: 500px;
+    }
+    
+    /* CTAs do Hero */
+    .hero-btns {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+    
+    .btn-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--secundaria);
+      color: var(--branco);
+      font-weight: 700;
+      font-size: 16px;
+      padding: 16px 28px;
+      border-radius: var(--radius-btn);
+      transition: all 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .btn-cta:hover {
+      background: var(--secundaria-escura);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(249,115,22,0.4);
+    }
+    
+    .btn-outline-light {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: transparent;
+      color: var(--branco);
+      font-weight: 600;
+      font-size: 16px;
+      padding: 16px 28px;
+      border-radius: var(--radius-btn);
+      border: 2px solid rgba(255,255,255,0.5);
+      transition: all 0.2s;
+    }
+    
+    .btn-outline-light:hover {
+      background: var(--branco);
+      color: var(--primaria);
+      border-color: var(--branco);
+    }
+    
+    /* Prova Social / Stats */
+    .hero-stats {
+      display: flex;
+      gap: 32px;
+      margin-bottom: 32px;
+    }
+    
+    .hero-stat {
+      text-align: center;
+    }
+    
+    .hero-stat strong {
+      display: block;
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--secundaria);
+    }
+    
+    .hero-stat span {
+      font-size: 13px;
+      color: rgba(255,255,255,0.7);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
     
     /* Busca por cidade */
@@ -922,6 +996,8 @@
       
       .hero-inner { grid-template-columns: 1fr; text-align: center; }
       .hero-desc { margin: 0 auto 32px; }
+      .hero-btns { justify-content: center; }
+      .hero-stats { justify-content: center; }
       .hero-search { margin: 0 auto; }
       .hero-img { display: none; }
       
@@ -933,6 +1009,9 @@
     
     @media (max-width: 600px) {
       .badges-inner { flex-direction: column; align-items: center; gap: 16px; }
+      .hero-btns { flex-direction: column; align-items: center; }
+      .hero-stats { gap: 20px; }
+      .hero-stat strong { font-size: 20px; }
       .hero-search { flex-direction: column; }
       .steps-grid { grid-template-columns: 1fr; }
       .footer-grid { grid-template-columns: 1fr; }
@@ -982,6 +1061,33 @@
       <div class="hero-badge">🇧🇷 Portal Nacional de Gás de Cozinha</div>
       <h1><span class="destaque">Gás de Cozinha</span> Perto de Você</h1>
       <p class="hero-desc">Encontre distribuidoras de gás na sua cidade. Botijão P13, P45 e P20 com entrega rápida. Compare preços e peça pelo WhatsApp.</p>
+      
+      <!-- CTAs -->
+      <div class="hero-btns">
+        <a class="btn-cta" href="https://wa.me/5567993330303?text=Ol%C3%A1%2C%20vim%20pelo%20site%20GasDeCozinha.com%20e%20quero%20fazer%20um%20pedido" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.107.548 4.086 1.508 5.806L0 24l6.362-1.481A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+          Pedir pelo WhatsApp
+        </a>
+        <a class="btn-outline-light" href="tel:+5567993330303">
+          📞 Ligar Agora
+        </a>
+      </div>
+      
+      <!-- Prova Social -->
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <strong>1000+</strong>
+          <span>Cidades</span>
+        </div>
+        <div class="hero-stat">
+          <strong>4.9★</strong>
+          <span>Avaliação</span>
+        </div>
+        <div class="hero-stat">
+          <strong>10+</strong>
+          <span>Anos</span>
+        </div>
+      </div>
       
       <div class="hero-search">
         <select id="cidade-select">
