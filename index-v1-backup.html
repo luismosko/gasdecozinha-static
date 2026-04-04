@@ -1,0 +1,1631 @@
+<!DOCTYPE html>
+<!--
+  index.html | Versão: 1.4.0 | Atualizado: 2026-03-29 | Descrição: Adicionado CTAs (WhatsApp + Ligar) e prova social no hero
+-->
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO Principal -->
+  <title>Gás de Cozinha Perto de Mim — Entrega Rápida P13, P45 e P20 | GasDeCozinha.com</title>
+  <meta name="description" content="Encontre gás de cozinha perto de você. Botijão P13, P45 e P20 com entrega rápida em todo o Brasil. Compare preços e peça pelo WhatsApp. Distribuidoras 24h.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://gasdecozinha.com/">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Gás de Cozinha Perto de Mim — Entrega Rápida | GasDeCozinha.com">
+  <meta property="og:description" content="Encontre gás de cozinha perto de você. Botijão P13, P45 e P20 com entrega rápida em todo o Brasil.">
+  <meta property="og:url" content="https://gasdecozinha.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:image" content="https://gasdecozinha.com/images/og-home.webp">
+  <meta property="og:site_name" content="Gás de Cozinha">
+  
+  <!-- Fontes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+  
+  <style>
+    /* ══════════════════════════════════════════════════════════════
+       RESET + VARIÁVEIS
+       ══════════════════════════════════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    :root {
+      /* CORES — Tema Empilhadeira (Azul Escuro + Laranja) */
+      --primaria: #0c4a6e;           /* azul petróleo escuro */
+      --primaria-clara: #0369a1;     /* azul médio */
+      --primaria-escura: #082f49;    /* azul mais escuro */
+      --primaria-bg: #f0f9ff;        /* azul bem claro */
+      
+      --secundaria: #f97316;         /* laranja vibrante */
+      --secundaria-clara: #fb923c;
+      --secundaria-escura: #ea580c;
+      
+      --verde-wpp: #25D366;
+      
+      --cinza-bg: #f8fafc;
+      --cinza-texto: #0f172a;
+      --cinza-sub: #64748b;
+      --borda: #e2e8f0;
+      --branco: #ffffff;
+      
+      --radius: 16px;
+      --radius-btn: 12px;
+      --shadow: 0 4px 20px rgba(0,0,0,0.08);
+      --shadow-hover: 0 8px 30px rgba(0,0,0,0.12);
+    }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--cinza-texto);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; height: auto; display: block; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    
+    /* ══════════════════════════════════════════════════════════════
+       HEADER
+       ══════════════════════════════════════════════════════════════ */
+    header {
+      background: var(--branco);
+      border-bottom: 1px solid var(--borda);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--primaria);
+    }
+    
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, var(--secundaria) 0%, var(--secundaria-escura) 100%);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+    }
+    
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 8px;
+      align-items: center;
+    }
+    
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 500;
+      padding: 10px 16px;
+      border-radius: var(--radius-btn);
+      transition: all 0.2s;
+      color: var(--cinza-texto);
+    }
+    
+    .nav-links a:hover {
+      background: var(--primaria-bg);
+      color: var(--primaria);
+    }
+    
+    .nav-wpp {
+      background: var(--verde-wpp) !important;
+      color: var(--branco) !important;
+      font-weight: 600 !important;
+    }
+    
+    .nav-wpp:hover {
+      background: #1db954 !important;
+      transform: translateY(-1px);
+    }
+    
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 5px;
+    }
+    
+    .hamburger span {
+      display: block;
+      width: 26px;
+      height: 3px;
+      background: var(--primaria);
+      border-radius: 3px;
+      transition: all 0.3s;
+    }
+    
+    .mobile-menu {
+      display: none;
+      background: var(--branco);
+      border-top: 1px solid var(--borda);
+      padding: 16px 20px;
+    }
+    
+    .mobile-menu.open { display: block; }
+    
+    .mobile-menu a {
+      display: block;
+      padding: 12px 0;
+      color: var(--primaria);
+      font-weight: 600;
+      border-bottom: 1px solid var(--borda);
+    }
+    
+    /* ══════════════════════════════════════════════════════════════
+       HERO
+       ══════════════════════════════════════════════════════════════ */
+    .hero {
+      background: linear-gradient(135deg, var(--primaria) 0%, var(--primaria-escura) 100%);
+      padding: 80px 20px;
+      position: relative;
+      overflow: hidden;
+      color: var(--branco);
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -30%;
+      right: -10%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(249,115,22,0.15) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -20%;
+      left: -10%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    
+    .hero-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--secundaria);
+      color: var(--branco);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 10px 18px;
+      border-radius: 50px;
+      margin-bottom: 20px;
+    }
+    
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      color: var(--branco);
+    }
+    
+    .hero h1 .destaque {
+      color: var(--secundaria);
+    }
+    
+    .hero-desc {
+      font-size: 18px;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 32px;
+      line-height: 1.7;
+      max-width: 500px;
+    }
+    
+    /* CTAs do Hero */
+    .hero-btns {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+    
+    .btn-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--secundaria);
+      color: var(--branco);
+      font-weight: 700;
+      font-size: 16px;
+      padding: 16px 28px;
+      border-radius: var(--radius-btn);
+      transition: all 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .btn-cta:hover {
+      background: var(--secundaria-escura);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(249,115,22,0.4);
+    }
+    
+    .btn-outline-light {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: transparent;
+      color: var(--branco);
+      font-weight: 600;
+      font-size: 16px;
+      padding: 16px 28px;
+      border-radius: var(--radius-btn);
+      border: 2px solid rgba(255,255,255,0.5);
+      transition: all 0.2s;
+    }
+    
+    .btn-outline-light:hover {
+      background: var(--branco);
+      color: var(--primaria);
+      border-color: var(--branco);
+    }
+    
+    /* Prova Social / Stats */
+    .hero-stats {
+      display: flex;
+      gap: 32px;
+      margin-bottom: 32px;
+    }
+    
+    .hero-stat {
+      text-align: center;
+    }
+    
+    .hero-stat strong {
+      display: block;
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--secundaria);
+    }
+    
+    .hero-stat span {
+      font-size: 13px;
+      color: rgba(255,255,255,0.7);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    /* Busca por cidade */
+    .hero-search {
+      background: var(--branco);
+      border-radius: var(--radius);
+      padding: 8px;
+      display: flex;
+      gap: 8px;
+      max-width: 500px;
+      box-shadow: var(--shadow-hover);
+    }
+    
+    .hero-search select {
+      flex: 1;
+      padding: 16px 20px;
+      border: none;
+      font-size: 16px;
+      font-family: inherit;
+      color: var(--cinza-texto);
+      background: var(--cinza-bg);
+      border-radius: var(--radius-btn);
+      cursor: pointer;
+    }
+    
+    .hero-search button {
+      background: var(--secundaria);
+      color: var(--branco);
+      border: none;
+      padding: 16px 28px;
+      font-size: 16px;
+      font-weight: 700;
+      border-radius: var(--radius-btn);
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+    
+    .hero-search button:hover {
+      background: var(--secundaria-escura);
+      transform: translateY(-1px);
+    }
+    
+    /* Cards de produtos no hero */
+    .hero-products {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    
+    .product-card {
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: var(--radius);
+      padding: 24px;
+      text-align: center;
+      transition: all 0.3s;
+    }
+    
+    .product-card:hover {
+      background: rgba(255,255,255,0.15);
+      transform: translateY(-5px);
+    }
+    
+    .product-icon {
+      font-size: 48px;
+      margin-bottom: 12px;
+    }
+    
+    .product-name {
+      font-size: 18px;
+    
+    /* Imagem do botijão no hero */
+    .hero-img {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .hero-img img {
+      max-height: 400px;
+      width: auto;
+      filter: drop-shadow(0 30px 60px rgba(0,0,0,0.3));
+      animation: float 4s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+    
+    .hero-img-badge {
+      position: absolute;
+      bottom: 30px;
+      right: 0;
+      background: var(--branco);
+      padding: 16px 24px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-hover);
+      text-align: center;
+    }
+    
+    .hero-img-preco {
+      display: block;
+      font-size: 12px;
+      color: var(--cinza-sub);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .hero-img-valor {
+      display: block;
+      font-size: 28px;
+      font-weight: 900;
+      color: var(--secundaria);
+    }
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+    
+    .product-desc {
+      font-size: 12px;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 12px;
+    }
+    
+    .product-price {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--secundaria);
+    }
+    
+    /* ══════════════════════════════════════════════════════════════
+       BADGES / CREDENCIAIS
+       ══════════════════════════════════════════════════════════════ */
+    .badges {
+      background: var(--branco);
+      padding: 20px;
+      border-bottom: 1px solid var(--borda);
+    }
+    
+    .badges-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+    
+    .badge-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--primaria);
+    }
+    
+    .badge-item svg {
+      width: 22px;
+      height: 22px;
+      fill: var(--primaria);
+    }
+    
+    /* ══════════════════════════════════════════════════════════════
+       SEÇÕES
+       ══════════════════════════════════════════════════════════════ */
+    section {
+      padding: 80px 20px;
+    }
+    
+    .section-header {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 50px;
+    }
+    
+    .section-tag {
+      display: inline-block;
+      background: var(--primaria-bg);
+      color: var(--primaria);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 8px 16px;
+      border-radius: 50px;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    .section-title {
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      font-weight: 800;
+      color: var(--cinza-texto);
+      margin-bottom: 12px;
+    }
+    
+    .section-sub {
+      font-size: 17px;
+      color: var(--cinza-sub);
+    }
+    
+    .bg-gray { background: var(--cinza-bg); }
+    .bg-white { background: var(--branco); }
+    
+    /* ══════════════════════════════════════════════════════════════
+       PRODUTOS (P13, P45, P20)
+       ══════════════════════════════════════════════════════════════ */
+    .produtos-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    
+    .produto-card {
+      background: var(--branco);
+      border-radius: var(--radius);
+      padding: 40px 30px;
+      text-align: center;
+      border: 2px solid var(--borda);
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .produto-card:hover {
+      border-color: var(--primaria);
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-hover);
+    }
+    
+    .produto-card.destaque {
+      border-color: var(--secundaria);
+    }
+    
+    .produto-card.destaque::before {
+      content: 'Mais Vendido';
+      position: absolute;
+      top: 20px;
+      right: -35px;
+      background: var(--secundaria);
+      color: var(--branco);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 6px 40px;
+      transform: rotate(45deg);
+    }
+    
+    .produto-icon {
+      font-size: 64px;
+      margin-bottom: 20px;
+    }
+    
+    .produto-nome {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--cinza-texto);
+      margin-bottom: 8px;
+    }
+    
+    .produto-peso {
+      font-size: 14px;
+      color: var(--cinza-sub);
+      margin-bottom: 16px;
+    }
+    
+    .produto-uso {
+      font-size: 14px;
+      color: var(--primaria);
+      font-weight: 600;
+      margin-bottom: 20px;
+      padding: 10px;
+      background: var(--primaria-bg);
+      border-radius: var(--radius-btn);
+    }
+    
+    .produto-preco {
+      font-size: 14px;
+      color: var(--cinza-sub);
+      margin-bottom: 20px;
+    }
+    
+    .produto-preco strong {
+      font-size: 28px;
+      color: var(--secundaria);
+      font-weight: 800;
+    }
+    
+    .produto-btn {
+      display: block;
+      background: var(--secundaria);
+      color: var(--branco);
+      padding: 14px 24px;
+      border-radius: var(--radius-btn);
+      font-weight: 700;
+      transition: all 0.2s;
+    }
+    
+    .produto-btn:hover {
+      background: var(--secundaria-escura);
+      transform: translateY(-2px);
+    }
+    
+    /* ══════════════════════════════════════════════════════════════
+       CIDADES / ESTADOS
+       ══════════════════════════════════════════════════════════════ */
+    .estados-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .estado-card {
+      background: var(--branco);
+      border-radius: var(--radius);
+      padding: 28px;
+      border: 1px solid var(--borda);
+      transition: all 0.3s;
+    }
+    
+    .estado-card:hover {
+      border-color: var(--primaria);
+      box-shadow: var(--shadow);
+    }
+    
+    .estado-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 16px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--borda);
+    }
+    
+    .estado-sigla {
+      width: 48px;
+      height: 48px;
+      background: var(--primaria);
+      color: var(--branco);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 16px;
+    }
+    
+    .estado-nome {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--cinza-texto);
+    }
+    
+    .estado-cidades {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    
+    .cidade-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 14px;
+      background: var(--cinza-bg);
+      border-radius: var(--radius-btn);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--cinza-texto);
+      transition: all 0.2s;
+    }
+    
+    .cidade-link:hover {
+      background: var(--primaria-bg);
+      color: var(--primaria);
+    }
+    
+    .cidade-link::after {
+      content: '→';
+      color: var(--primaria);
+      font-weight: 700;
+    }
+    
+    /* ══════════════════════════════════════════════════════════════
+       COMO FUNCIONA
+       ══════════════════════════════════════════════════════════════ */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    
+    .step-card {
+      text-align: center;
+      position: relative;
+    }
+    
+    .step-card:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      top: 35px;
+      right: -15px;
+      width: 30px;
+      height: 2px;
+      background: var(--borda);
+    }
+    
+    .step-num {
+      width: 70px;
+      height: 70px;
+      background: var(--primaria);
+      color: var(--branco);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 24px;
+      margin: 0 auto 20px;
+      box-shadow: 0 8px 20px rgba(12,74,110,0.3);
+    }
+    
+    .step-card h3 {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--cinza-texto);
+      margin-bottom: 8px;
+    }
+    
+    .step-card p {
+      font-size: 14px;
+      color: var(--cinza-sub);
+    }
+    
+    /* ══════════════════════════════════════════════════════════════
+       FAQ
+       ══════════════════════════════════════════════════════════════ */
+    .faq-list {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .faq-item {
+      background: var(--branco);
+      border: 1px solid var(--borda);
+      border-radius: var(--radius);
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+    
+    .faq-btn {
+      width: 100%;
+      text-align: left;
+      background: none;
+      border: none;
+      padding: 20px 24px;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--cinza-texto);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: inherit;
+    }
+    
+    .faq-btn::after {
+      content: '+';
+      font-size: 24px;
+      font-weight: 400;
+      color: var(--primaria);
+      transition: transform 0.3s;
+    }
+    
+    .faq-item.open .faq-btn::after {
+      transform: rotate(45deg);
+    }
+    
+    .faq-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+    
+    .faq-item.open .faq-content {
+      max-height: 500px;
+    }
+    
+    .faq-content p {
+      padding: 0 24px 20px;
+      font-size: 15px;
+      color: var(--cinza-sub);
+      line-height: 1.7;
+    }
+    
+    /* ══════════════════════════════════════════════════════════════
+       CTA FINAL
+       ══════════════════════════════════════════════════════════════ */
+    .cta-final {
+      background: linear-gradient(135deg, var(--primaria) 0%, var(--primaria-escura) 100%);
+      padding: 80px 20px;
+      text-align: center;
+      color: var(--branco);
+    }
+    
+    .cta-final h2 {
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+    
+    .cta-final p {
+      font-size: 18px;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 32px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .btn-wpp {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--verde-wpp);
+      color: var(--branco);
+      font-weight: 700;
+      font-size: 18px;
+      padding: 18px 36px;
+      border-radius: var(--radius-btn);
+      transition: all 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .btn-wpp:hover {
+      background: #1db954;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(37,211,102,0.4);
+    }
+    
+    .btn-wpp svg {
+      width: 24px;
+      height: 24px;
+      fill: currentColor;
+    }
+    
+    /* ══════════════════════════════════════════════════════════════
+       FOOTER
+       ══════════════════════════════════════════════════════════════ */
+    footer {
+      background: #0f172a;
+      color: rgba(255,255,255,0.7);
+      padding: 60px 20px 30px;
+    }
+    
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 40px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--branco);
+      margin-bottom: 16px;
+    }
+    
+    .footer-desc {
+      font-size: 14px;
+      line-height: 1.7;
+    }
+    
+    .footer-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--branco);
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .footer-links a {
+      display: block;
+      font-size: 14px;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 10px;
+      transition: color 0.2s;
+    }
+    
+    .footer-links a:hover { color: var(--branco); }
+    
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    
+    .footer-legal {
+      font-size: 13px;
+      color: rgba(255,255,255,0.5);
+    }
+    
+    /* ══════════════════════════════════════════════════════════════
+       FLOAT WHATSAPP
+       ══════════════════════════════════════════════════════════════ */
+    .float-wpp {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: var(--verde-wpp);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 20px rgba(37,211,102,0.4);
+      z-index: 999;
+      transition: all 0.3s;
+    }
+    
+    .float-wpp:hover {
+      transform: scale(1.1);
+      box-shadow: 0 8px 25px rgba(37,211,102,0.5);
+    }
+    
+    .float-wpp svg {
+      width: 32px;
+      height: 32px;
+      fill: var(--branco);
+    }
+    
+    /* ══════════════════════════════════════════════════════════════
+       RESPONSIVO
+       ══════════════════════════════════════════════════════════════ */
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      
+      .hero-inner { grid-template-columns: 1fr; text-align: center; }
+      .hero-desc { margin: 0 auto 32px; }
+      .hero-btns { justify-content: center; }
+      .hero-stats { justify-content: center; }
+      .hero-search { margin: 0 auto; }
+      .hero-img { display: none; }
+      
+      .produtos-grid { grid-template-columns: 1fr; max-width: 350px; margin: 0 auto; }
+      .steps-grid { grid-template-columns: 1fr 1fr; }
+      .step-card:not(:last-child)::after { display: none; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    
+    @media (max-width: 600px) {
+      .badges-inner { flex-direction: column; align-items: center; gap: 16px; }
+      .hero-btns { flex-direction: column; align-items: center; }
+      .hero-stats { gap: 20px; }
+      .hero-stat strong { font-size: 20px; }
+      .hero-search { flex-direction: column; }
+      .steps-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .float-wpp { bottom: 20px; right: 20px; width: 55px; height: 55px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════════════
+     HEADER
+     ══════════════════════════════════════════════════════════════ -->
+<header>
+  <nav>
+    <a href="/" class="logo">
+      <div class="logo-icon">🔥</div>
+      GásDeCozinha
+    </a>
+    <ul class="nav-links">
+      <li><a href="/">Início</a></li>
+      <li><a href="/p13/">Botijão P13</a></li>
+      <li><a href="/p45/">Botijão P45</a></li>
+      <li><a href="/p20/">Gás P20</a></li>
+      <li><a href="/precos/">Preços</a></li>
+      <li><a href="https://wa.me/5567993330303?text=Ol%C3%A1%2C%20vim%20pelo%20site%20GasDeCozinha.com%20e%20quero%20fazer%20um%20pedido" target="_blank" rel="noopener" class="nav-wpp">WhatsApp</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="/">Início</a>
+    <a href="/p13/">Botijão P13</a>
+    <a href="/p45/">Botijão P45</a>
+    <a href="/p20/">Gás P20</a>
+    <a href="/precos/">Preços</a>
+    <a href="https://wa.me/5567993330303?text=Ol%C3%A1%2C%20vim%20pelo%20site%20GasDeCozinha.com" target="_blank" rel="noopener">📲 WhatsApp</a>
+  </div>
+</header>
+
+<!-- ══════════════════════════════════════════════════════════════
+     HERO
+     ══════════════════════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-badge">🇧🇷 Portal Nacional de Gás de Cozinha</div>
+      <h1><span class="destaque">Gás de Cozinha</span> Perto de Você</h1>
+      <p class="hero-desc">Encontre distribuidoras de gás na sua cidade. Botijão P13, P45 e P20 com entrega rápida. Compare preços e peça pelo WhatsApp.</p>
+      
+      <!-- CTAs -->
+      <div class="hero-btns">
+        <a class="btn-cta" href="https://wa.me/5567993330303?text=Ol%C3%A1%2C%20vim%20pelo%20site%20GasDeCozinha.com%20e%20quero%20fazer%20um%20pedido" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.107.548 4.086 1.508 5.806L0 24l6.362-1.481A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+          Pedir pelo WhatsApp
+        </a>
+        <a class="btn-outline-light" href="tel:+5567993330303">
+          📞 Ligar Agora
+        </a>
+      </div>
+      
+      <!-- Prova Social -->
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <strong>1000+</strong>
+          <span>Cidades</span>
+        </div>
+        <div class="hero-stat">
+          <strong>4.9★</strong>
+          <span>Avaliação</span>
+        </div>
+        <div class="hero-stat">
+          <strong>10+</strong>
+          <span>Anos</span>
+        </div>
+      </div>
+      
+      <div class="hero-search">
+        <select id="cidade-select">
+          <option value="">Selecione sua cidade...</option>
+          <optgroup label="Centro-Oeste">
+            <option value="/ms/campo-grande/">Campo Grande - MS</option>
+            <option value="/ms/dourados/">Dourados - MS</option>
+            <option value="/mt/cuiaba/">Cuiabá - MT</option>
+            <option value="/go/goiania/">Goiânia - GO</option>
+            <option value="/df/brasilia/">Brasília - DF</option>
+          </optgroup>
+          <optgroup label="Sudeste">
+            <option value="/sp/sao-paulo/">São Paulo - SP</option>
+            <option value="/rj/rio-de-janeiro/">Rio de Janeiro - RJ</option>
+            <option value="/mg/belo-horizonte/">Belo Horizonte - MG</option>
+          </optgroup>
+          <optgroup label="Sul">
+            <option value="/pr/curitiba/">Curitiba - PR</option>
+            <option value="/sc/florianopolis/">Florianópolis - SC</option>
+            <option value="/rs/porto-alegre/">Porto Alegre - RS</option>
+          </optgroup>
+          <optgroup label="Nordeste">
+            <option value="/ba/salvador/">Salvador - BA</option>
+            <option value="/pe/recife/">Recife - PE</option>
+            <option value="/ce/fortaleza/">Fortaleza - CE</option>
+          </optgroup>
+          <optgroup label="Norte">
+            <option value="/am/manaus/">Manaus - AM</option>
+            <option value="/pa/belem/">Belém - PA</option>
+          </optgroup>
+        </select>
+        <button onclick="irParaCidade()">Buscar</button>
+      </div>
+    </div>
+    
+    <div class="hero-img">
+      <img src="/images/botijao-p13.webp" alt="Botijão de Gás P13" width="350" height="400" loading="eager">
+      <div class="hero-img-badge">
+        <span class="hero-img-preco">P13 a partir de</span>
+        <span class="hero-img-valor">R$ 95</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════
+     BADGES
+     ══════════════════════════════════════════════════════════════ -->
+<div class="badges">
+  <div class="badges-inner">
+    <div class="badge-item">
+      <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+      Todo o Brasil
+    </div>
+    <div class="badge-item">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2" stroke="#fff" stroke-width="2" fill="none"/></svg>
+      Entrega Rápida
+    </div>
+    <div class="badge-item">
+      <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+      Botijões Lacrados
+    </div>
+    <div class="badge-item">
+      <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+      +1000 Cidades
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     PRODUTOS
+     ══════════════════════════════════════════════════════════════ -->
+<section class="bg-white">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Produtos</span>
+      <h2 class="section-title">Tipos de Botijão de Gás</h2>
+      <p class="section-sub">Escolha o botijão ideal para sua necessidade</p>
+    </div>
+    
+    <div class="produtos-grid">
+      <div class="produto-card destaque">
+        <div class="produto-icon">🔵</div>
+        <div class="produto-nome">Botijão P13</div>
+        <div class="produto-peso">13 quilos de GLP</div>
+        <div class="produto-uso">🏠 Uso Residencial</div>
+        <div class="produto-preco">A partir de <strong>R$ 95</strong></div>
+        <a href="/p13/" class="produto-btn">Ver Preços por Cidade</a>
+      </div>
+      
+      <div class="produto-card">
+        <div class="produto-icon">🟠</div>
+        <div class="produto-nome">Botijão P45</div>
+        <div class="produto-peso">45 quilos de GLP</div>
+        <div class="produto-uso">🍳 Uso Comercial</div>
+        <div class="produto-preco">A partir de <strong>R$ 380</strong></div>
+        <a href="/p45/" class="produto-btn">Ver Preços por Cidade</a>
+      </div>
+      
+      <div class="produto-card">
+        <div class="produto-icon">🟡</div>
+        <div class="produto-nome">Gás P20</div>
+        <div class="produto-peso">20 quilos de GLP</div>
+        <div class="produto-uso">🚜 Empilhadeiras</div>
+        <div class="produto-preco">A partir de <strong>R$ 180</strong></div>
+        <a href="/p20/" class="produto-btn">Ver Preços por Cidade</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════
+     CIDADES / ESTADOS
+     ══════════════════════════════════════════════════════════════ -->
+<section class="bg-gray">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Cobertura Nacional</span>
+      <h2 class="section-title">Gás de Cozinha por Estado</h2>
+      <p class="section-sub">Encontre distribuidoras na sua região</p>
+    </div>
+    
+    <div class="estados-grid">
+      <!-- CENTRO-OESTE (Prioridade) -->
+      <div class="estado-card">
+        <div class="estado-header">
+          <div class="estado-sigla">MS</div>
+          <div class="estado-nome">Mato Grosso do Sul</div>
+        </div>
+        <div class="estado-cidades">
+          <a href="/ms/campo-grande/" class="cidade-link">Campo Grande</a>
+          <a href="/ms/dourados/" class="cidade-link">Dourados</a>
+          <a href="/ms/tres-lagoas/" class="cidade-link">Três Lagoas</a>
+        </div>
+      </div>
+      
+      <div class="estado-card">
+        <div class="estado-header">
+          <div class="estado-sigla">MT</div>
+          <div class="estado-nome">Mato Grosso</div>
+        </div>
+        <div class="estado-cidades">
+          <a href="/mt/cuiaba/" class="cidade-link">Cuiabá</a>
+          <a href="/mt/varzea-grande/" class="cidade-link">Várzea Grande</a>
+          <a href="/mt/rondonopolis/" class="cidade-link">Rondonópolis</a>
+          <a href="/mt/sinop/" class="cidade-link">Sinop</a>
+        </div>
+      </div>
+      
+      <div class="estado-card">
+        <div class="estado-header">
+          <div class="estado-sigla">GO</div>
+          <div class="estado-nome">Goiás</div>
+        </div>
+        <div class="estado-cidades">
+          <a href="/go/goiania/" class="cidade-link">Goiânia</a>
+          <a href="/go/aparecida-de-goiania/" class="cidade-link">Aparecida de Goiânia</a>
+          <a href="/go/anapolis/" class="cidade-link">Anápolis</a>
+        </div>
+      </div>
+      
+      <div class="estado-card">
+        <div class="estado-header">
+          <div class="estado-sigla">DF</div>
+          <div class="estado-nome">Distrito Federal</div>
+        </div>
+        <div class="estado-cidades">
+          <a href="/df/brasilia/" class="cidade-link">Brasília</a>
+        </div>
+      </div>
+      
+      <!-- SUDESTE -->
+      <div class="estado-card">
+        <div class="estado-header">
+          <div class="estado-sigla">SP</div>
+          <div class="estado-nome">São Paulo</div>
+        </div>
+        <div class="estado-cidades">
+          <a href="/sp/sao-paulo/" class="cidade-link">São Paulo</a>
+        </div>
+      </div>
+      
+      <div class="estado-card">
+        <div class="estado-header">
+          <div class="estado-sigla">RJ</div>
+          <div class="estado-nome">Rio de Janeiro</div>
+        </div>
+        <div class="estado-cidades">
+          <a href="/rj/rio-de-janeiro/" class="cidade-link">Rio de Janeiro</a>
+        </div>
+      </div>
+      
+      <div class="estado-card">
+        <div class="estado-header">
+          <div class="estado-sigla">MG</div>
+          <div class="estado-nome">Minas Gerais</div>
+        </div>
+        <div class="estado-cidades">
+          <a href="/mg/belo-horizonte/" class="cidade-link">Belo Horizonte</a>
+        </div>
+      </div>
+      
+      <!-- SUL -->
+      <div class="estado-card">
+        <div class="estado-header">
+          <div class="estado-sigla">PR</div>
+          <div class="estado-nome">Paraná</div>
+        </div>
+        <div class="estado-cidades">
+          <a href="/pr/curitiba/" class="cidade-link">Curitiba</a>
+        </div>
+      </div>
+      
+      <div class="estado-card">
+        <div class="estado-header">
+          <div class="estado-sigla">SC</div>
+          <div class="estado-nome">Santa Catarina</div>
+        </div>
+        <div class="estado-cidades">
+          <a href="/sc/florianopolis/" class="cidade-link">Florianópolis</a>
+        </div>
+      </div>
+      
+      <div class="estado-card">
+        <div class="estado-header">
+          <div class="estado-sigla">RS</div>
+          <div class="estado-nome">Rio Grande do Sul</div>
+        </div>
+        <div class="estado-cidades">
+          <a href="/rs/porto-alegre/" class="cidade-link">Porto Alegre</a>
+        </div>
+      </div>
+      
+      <!-- NORDESTE -->
+      <div class="estado-card">
+        <div class="estado-header">
+          <div class="estado-sigla">BA</div>
+          <div class="estado-nome">Bahia</div>
+        </div>
+        <div class="estado-cidades">
+          <a href="/ba/salvador/" class="cidade-link">Salvador</a>
+        </div>
+      </div>
+      
+      <div class="estado-card">
+        <div class="estado-header">
+          <div class="estado-sigla">PE</div>
+          <div class="estado-nome">Pernambuco</div>
+        </div>
+        <div class="estado-cidades">
+          <a href="/pe/recife/" class="cidade-link">Recife</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════
+     COMO FUNCIONA
+     ══════════════════════════════════════════════════════════════ -->
+<section class="bg-white">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Simples e Rápido</span>
+      <h2 class="section-title">Como Funciona</h2>
+      <p class="section-sub">Peça seu gás em poucos minutos</p>
+    </div>
+    
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <h3>Escolha sua Cidade</h3>
+        <p>Selecione sua cidade na lista ou busque acima</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <h3>Veja os Preços</h3>
+        <p>Compare preços de diferentes distribuidoras</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <h3>Peça pelo WhatsApp</h3>
+        <p>Envie seu pedido direto pelo WhatsApp</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">4</div>
+        <h3>Receba em Casa</h3>
+        <p>Entrega rápida na sua porta</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════
+     FAQ
+     ══════════════════════════════════════════════════════════════ -->
+<section class="bg-gray">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Dúvidas</span>
+      <h2 class="section-title">Perguntas Frequentes</h2>
+      <p class="section-sub">Tire suas dúvidas sobre gás de cozinha</p>
+    </div>
+    
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-btn">Qual a diferença entre P13, P45 e P20?</button>
+        <div class="faq-content">
+          <p>O <strong>P13</strong> (13kg) é o botijão residencial comum, ideal para casas e apartamentos. O <strong>P45</strong> (45kg) é para uso comercial em restaurantes, padarias e indústrias leves. O <strong>P20</strong> (20kg) é específico para empilhadeiras a gás.</p>
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <button class="faq-btn">Qual o preço médio do gás de cozinha?</button>
+        <div class="faq-content">
+          <p>O preço do botijão P13 varia entre <strong>R$ 95 e R$ 140</strong> dependendo da cidade e região. O P45 fica entre R$ 380 e R$ 500. Os preços são atualizados frequentemente conforme a ANP.</p>
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <button class="faq-btn">Como saber se o botijão está cheio?</button>
+        <div class="faq-content">
+          <p>O botijão P13 cheio pesa aproximadamente <strong>29kg</strong> (13kg de gás + 16kg do vasilhame). Você pode conferir na balança. Além disso, o lacre deve estar intacto e o botijão deve ter a tara (peso vazio) marcada.</p>
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <button class="faq-btn">Quanto tempo dura um botijão de gás?</button>
+        <div class="faq-content">
+          <p>Um botijão P13 dura em média <strong>30 a 45 dias</strong> para uma família de 4 pessoas com uso moderado. Para restaurantes, o P45 dura de acordo com o volume de preparo, geralmente 1-2 semanas.</p>
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <button class="faq-btn">Vocês entregam em todo o Brasil?</button>
+        <div class="faq-content">
+          <p>Sim! Nosso portal conecta você com distribuidoras em <strong>todas as capitais e principais cidades</strong> do Brasil. Basta selecionar sua cidade e entrar em contato pelo WhatsApp.</p>
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <button class="faq-btn">Quais formas de pagamento são aceitas?</button>
+        <div class="faq-content">
+          <p>A maioria das distribuidoras aceita <strong>Pix, dinheiro, cartão de crédito e débito</strong>. O pagamento geralmente é feito no ato da entrega. Confirme com a distribuidora da sua cidade.</p>
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <button class="faq-btn">O botijão vem com nota fiscal?</button>
+        <div class="faq-content">
+          <p>Sim! Distribuidoras regularizadas emitem <strong>nota fiscal eletrônica</strong> em todas as entregas. Isso garante a procedência do gás e seus direitos como consumidor.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════
+     CTA FINAL
+     ══════════════════════════════════════════════════════════════ -->
+<section class="cta-final">
+  <h2>Precisa de Gás de Cozinha?</h2>
+  <p>Encontre a distribuidora mais perto de você e peça agora pelo WhatsApp. Entrega rápida em todo o Brasil.</p>
+  <a class="btn-wpp" href="https://wa.me/5567993330303?text=Ol%C3%A1%2C%20vim%20pelo%20site%20GasDeCozinha.com%20e%20quero%20fazer%20um%20pedido" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.107.548 4.086 1.508 5.806L0 24l6.362-1.481A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+    Pedir pelo WhatsApp
+  </a>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════
+     FOOTER
+     ══════════════════════════════════════════════════════════════ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">🔥 GásDeCozinha</div>
+        <p class="footer-desc">Portal nacional de gás de cozinha. Encontre distribuidoras perto de você com entrega rápida de botijão P13, P45 e P20.</p>
+      </div>
+      <div>
+        <div class="footer-title">Produtos</div>
+        <div class="footer-links">
+          <a href="/p13/">Botijão P13</a>
+          <a href="/p45/">Botijão P45</a>
+          <a href="/p20/">Gás P20 Empilhadeira</a>
+          <a href="/precos/">Tabela de Preços</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-title">Regiões</div>
+        <div class="footer-links">
+          <a href="/ms/campo-grande/">Campo Grande - MS</a>
+          <a href="/sp/sao-paulo/">São Paulo - SP</a>
+          <a href="/rj/rio-de-janeiro/">Rio de Janeiro - RJ</a>
+          <a href="/df/brasilia/">Brasília - DF</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-title">Contato</div>
+        <div class="footer-links">
+          <a href="https://wa.me/5567993330303" target="_blank">📲 WhatsApp</a>
+          <a href="/sobre/">Sobre o Portal</a>
+          <a href="/contato/">Fale Conosco</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-legal">
+        © 2026 GasDeCozinha.com — Portal de informações sobre gás de cozinha. Não somos distribuidora.
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ══════════════════════════════════════════════════════════════
+     FLOAT WHATSAPP
+     ══════════════════════════════════════════════════════════════ -->
+<a class="float-wpp" href="https://wa.me/5567993330303?text=Ol%C3%A1%2C%20vim%20pelo%20site%20GasDeCozinha.com" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.107.548 4.086 1.508 5.806L0 24l6.362-1.481A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+</a>
+
+<!-- ══════════════════════════════════════════════════════════════
+     SCRIPTS
+     ══════════════════════════════════════════════════════════════ -->
+<script>
+  // FAQ Accordion
+  document.querySelectorAll('.faq-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.parentElement;
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+  
+  // Mobile Menu
+  document.getElementById('hamburger').addEventListener('click', () => {
+    document.getElementById('mobile-menu').classList.toggle('open');
+  });
+  
+  // Busca por cidade
+  function irParaCidade() {
+    const select = document.getElementById('cidade-select');
+    if (select.value) {
+      window.location.href = select.value;
+    }
+  }
+</script>
+
+<!-- ══════════════════════════════════════════════════════════════
+     SCHEMA.ORG
+     ══════════════════════════════════════════════════════════════ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "name": "Gás de Cozinha",
+      "url": "https://gasdecozinha.com/",
+      "description": "Portal nacional de gás de cozinha. Encontre distribuidoras perto de você com entrega rápida de botijão P13, P45 e P20.",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://gasdecozinha.com/busca/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": "Organization",
+      "name": "Gás de Cozinha",
+      "url": "https://gasdecozinha.com/",
+      "logo": "https://gasdecozinha.com/images/logo.webp",
+      "sameAs": []
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Qual a diferença entre P13, P45 e P20?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "O P13 (13kg) é o botijão residencial comum, ideal para casas e apartamentos. O P45 (45kg) é para uso comercial em restaurantes, padarias e indústrias leves. O P20 (20kg) é específico para empilhadeiras a gás."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Qual o preço médio do gás de cozinha?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "O preço do botijão P13 varia entre R$ 95 e R$ 140 dependendo da cidade e região. O P45 fica entre R$ 380 e R$ 500. Os preços são atualizados frequentemente conforme a ANP."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Como saber se o botijão está cheio?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "O botijão P13 cheio pesa aproximadamente 29kg (13kg de gás + 16kg do vasilhame). Você pode conferir na balança. Além disso, o lacre deve estar intacto e o botijão deve ter a tara (peso vazio) marcada."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Quanto tempo dura um botijão de gás?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Um botijão P13 dura em média 30 a 45 dias para uma família de 4 pessoas com uso moderado. Para restaurantes, o P45 dura de acordo com o volume de preparo, geralmente 1-2 semanas."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Vocês entregam em todo o Brasil?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sim! Nosso portal conecta você com distribuidoras em todas as capitais e principais cidades do Brasil. Basta selecionar sua cidade e entrar em contato pelo WhatsApp."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Quais formas de pagamento são aceitas?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A maioria das distribuidoras aceita Pix, dinheiro, cartão de crédito e débito. O pagamento geralmente é feito no ato da entrega. Confirme com a distribuidora da sua cidade."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "O botijão vem com nota fiscal?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sim! Distribuidoras regularizadas emitem nota fiscal eletrônica em todas as entregas. Isso garante a procedência do gás e seus direitos como consumidor."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+</body>
+</html>

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-  index.html | Versão: 1.4.0 | Atualizado: 2026-03-29 | Descrição: Adicionado CTAs (WhatsApp + Ligar) e prova social no hero
+  index.html | Versão: 2.0.0 | Atualizado: 2026-03-29 | Descrição: Redesign completo com frontend-design skill
 -->
 <html lang="pt-BR">
 <head>
@@ -20,97 +20,164 @@
   <meta property="og:type" content="website">
   <meta property="og:locale" content="pt_BR">
   <meta property="og:image" content="https://gasdecozinha.com/images/og-home.webp">
-  <meta property="og:site_name" content="Gás de Cozinha">
   
-  <!-- Fontes -->
+  <!-- Fontes Distintivas: Sora (display) + DM Sans (body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  
-  <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   
   <style>
     /* ══════════════════════════════════════════════════════════════
-       RESET + VARIÁVEIS
+       RESET + VARIÁVEIS — TEMA BOLD
        ══════════════════════════════════════════════════════════════ */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     
     :root {
-      /* CORES — Tema Empilhadeira (Azul Escuro + Laranja) */
-      --primaria: #0c4a6e;           /* azul petróleo escuro */
-      --primaria-clara: #0369a1;     /* azul médio */
-      --primaria-escura: #082f49;    /* azul mais escuro */
-      --primaria-bg: #f0f9ff;        /* azul bem claro */
+      /* Paleta Dramática */
+      --navy: #0a1628;
+      --navy-light: #132039;
+      --navy-mid: #1e3a5f;
       
-      --secundaria: #f97316;         /* laranja vibrante */
-      --secundaria-clara: #fb923c;
-      --secundaria-escura: #ea580c;
+      --flame: #ff6b35;
+      --flame-light: #ff8c5a;
+      --flame-dark: #e85a2a;
+      --flame-glow: rgba(255, 107, 53, 0.4);
+      
+      --ice: #00d4ff;
+      --ice-glow: rgba(0, 212, 255, 0.3);
+      
+      --white: #ffffff;
+      --white-90: rgba(255,255,255,0.9);
+      --white-70: rgba(255,255,255,0.7);
+      --white-50: rgba(255,255,255,0.5);
+      --white-20: rgba(255,255,255,0.2);
+      --white-10: rgba(255,255,255,0.1);
+      --white-05: rgba(255,255,255,0.05);
+      
+      --gray-100: #f1f5f9;
+      --gray-200: #e2e8f0;
+      --gray-600: #475569;
+      --gray-900: #0f172a;
       
       --verde-wpp: #25D366;
       
-      --cinza-bg: #f8fafc;
-      --cinza-texto: #0f172a;
-      --cinza-sub: #64748b;
-      --borda: #e2e8f0;
-      --branco: #ffffff;
+      /* Tipografia */
+      --font-display: 'Sora', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
       
-      --radius: 16px;
-      --radius-btn: 12px;
-      --shadow: 0 4px 20px rgba(0,0,0,0.08);
-      --shadow-hover: 0 8px 30px rgba(0,0,0,0.12);
+      /* Espaçamento */
+      --radius-sm: 8px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-xl: 32px;
+      --radius-full: 9999px;
     }
     
     body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      color: var(--cinza-texto);
+      font-family: var(--font-body);
+      background: var(--navy);
+      color: var(--white);
       line-height: 1.6;
       overflow-x: hidden;
     }
     
     a { text-decoration: none; color: inherit; }
     img { max-width: 100%; height: auto; display: block; }
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
     
     /* ══════════════════════════════════════════════════════════════
-       HEADER
+       ANIMAÇÕES
+       ══════════════════════════════════════════════════════════════ */
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(2deg); }
+    }
+    
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 20px var(--flame-glow); }
+      50% { box-shadow: 0 0 40px var(--flame-glow), 0 0 60px var(--flame-glow); }
+    }
+    
+    @keyframes slide-up {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes slide-in-left {
+      from { opacity: 0; transform: translateX(-60px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    
+    @keyframes scale-in {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    
+    @keyframes gradient-shift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    .animate-up { animation: slide-up 0.8s ease-out forwards; }
+    .animate-left { animation: slide-in-left 0.8s ease-out forwards; }
+    .animate-scale { animation: scale-in 0.6s ease-out forwards; }
+    
+    .delay-1 { animation-delay: 0.1s; opacity: 0; }
+    .delay-2 { animation-delay: 0.2s; opacity: 0; }
+    .delay-3 { animation-delay: 0.3s; opacity: 0; }
+    .delay-4 { animation-delay: 0.4s; opacity: 0; }
+    .delay-5 { animation-delay: 0.5s; opacity: 0; }
+    
+    /* ══════════════════════════════════════════════════════════════
+       HEADER — Glassmorphism
        ══════════════════════════════════════════════════════════════ */
     header {
-      background: var(--branco);
-      border-bottom: 1px solid var(--borda);
-      position: sticky;
+      position: fixed;
       top: 0;
-      z-index: 100;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(10, 22, 40, 0.8);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--white-10);
     }
     
     nav {
-      max-width: 1200px;
+      max-width: 1400px;
       margin: 0 auto;
-      padding: 16px 20px;
+      padding: 16px 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 20px;
     }
     
     .logo {
       display: flex;
       align-items: center;
-      gap: 10px;
-      font-size: 22px;
+      gap: 12px;
+      font-family: var(--font-display);
+      font-size: 24px;
       font-weight: 800;
-      color: var(--primaria);
+      letter-spacing: -0.5px;
     }
     
     .logo-icon {
-      width: 40px;
-      height: 40px;
-      background: linear-gradient(135deg, var(--secundaria) 0%, var(--secundaria-escura) 100%);
-      border-radius: 10px;
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, var(--flame) 0%, var(--flame-dark) 100%);
+      border-radius: var(--radius-md);
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 24px;
+      box-shadow: 0 4px 20px var(--flame-glow);
+    }
+    
+    .logo-text span {
+      background: linear-gradient(135deg, var(--flame) 0%, var(--flame-light) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
     
     .nav-links {
@@ -121,28 +188,32 @@
     }
     
     .nav-links a {
-      font-size: 14px;
+      font-family: var(--font-body);
+      font-size: 15px;
       font-weight: 500;
-      padding: 10px 16px;
-      border-radius: var(--radius-btn);
-      transition: all 0.2s;
-      color: var(--cinza-texto);
+      padding: 10px 18px;
+      border-radius: var(--radius-full);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      color: var(--white-70);
     }
     
     .nav-links a:hover {
-      background: var(--primaria-bg);
-      color: var(--primaria);
+      color: var(--white);
+      background: var(--white-10);
     }
     
-    .nav-wpp {
-      background: var(--verde-wpp) !important;
-      color: var(--branco) !important;
+    .nav-cta {
+      background: var(--flame) !important;
+      color: var(--white) !important;
       font-weight: 600 !important;
+      padding: 12px 24px !important;
+      box-shadow: 0 4px 20px var(--flame-glow);
     }
     
-    .nav-wpp:hover {
-      background: #1db954 !important;
-      transform: translateY(-1px);
+    .nav-cta:hover {
+      background: var(--flame-light) !important;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px var(--flame-glow);
     }
     
     .hamburger {
@@ -152,626 +223,789 @@
       cursor: pointer;
       background: none;
       border: none;
-      padding: 5px;
+      padding: 8px;
     }
     
     .hamburger span {
       display: block;
-      width: 26px;
+      width: 28px;
       height: 3px;
-      background: var(--primaria);
+      background: var(--white);
       border-radius: 3px;
       transition: all 0.3s;
     }
     
     .mobile-menu {
       display: none;
-      background: var(--branco);
-      border-top: 1px solid var(--borda);
-      padding: 16px 20px;
+      position: fixed;
+      top: 76px;
+      left: 0;
+      right: 0;
+      background: var(--navy);
+      border-bottom: 1px solid var(--white-10);
+      padding: 20px;
     }
     
     .mobile-menu.open { display: block; }
     
     .mobile-menu a {
       display: block;
-      padding: 12px 0;
-      color: var(--primaria);
-      font-weight: 600;
-      border-bottom: 1px solid var(--borda);
+      padding: 16px;
+      color: var(--white-70);
+      font-weight: 500;
+      border-bottom: 1px solid var(--white-10);
+      transition: all 0.2s;
+    }
+    
+    .mobile-menu a:hover {
+      color: var(--flame);
+      padding-left: 24px;
     }
     
     /* ══════════════════════════════════════════════════════════════
-       HERO
+       HERO — Dramatic & Bold
        ══════════════════════════════════════════════════════════════ */
     .hero {
-      background: linear-gradient(135deg, var(--primaria) 0%, var(--primaria-escura) 100%);
-      padding: 80px 20px;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
       position: relative;
+      padding: 120px 24px 80px;
       overflow: hidden;
-      color: var(--branco);
     }
     
+    /* Background com múltiplas camadas */
     .hero::before {
       content: '';
       position: absolute;
-      top: -30%;
-      right: -10%;
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, rgba(249,115,22,0.15) 0%, transparent 70%);
-      border-radius: 50%;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse 80% 50% at 20% 40%, rgba(255, 107, 53, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 80% 60%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+        linear-gradient(180deg, var(--navy) 0%, var(--navy-light) 100%);
+      z-index: 0;
     }
     
+    /* Grid pattern overlay */
     .hero::after {
       content: '';
       position: absolute;
-      bottom: -20%;
-      left: -10%;
-      width: 400px;
-      height: 400px;
-      background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
-      border-radius: 50%;
+      inset: 0;
+      background-image: 
+        linear-gradient(var(--white-05) 1px, transparent 1px),
+        linear-gradient(90deg, var(--white-05) 1px, transparent 1px);
+      background-size: 60px 60px;
+      z-index: 1;
+      opacity: 0.5;
     }
     
     .hero-inner {
-      max-width: 1200px;
+      max-width: 1400px;
       margin: 0 auto;
+      width: 100%;
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 80px;
       align-items: center;
       position: relative;
-      z-index: 1;
+      z-index: 2;
+    }
+    
+    /* Floating decorative elements */
+    .hero-decor {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      z-index: 0;
+    }
+    
+    .hero-decor-1 {
+      width: 400px;
+      height: 400px;
+      background: var(--flame);
+      opacity: 0.1;
+      top: 10%;
+      left: -10%;
+      animation: float 8s ease-in-out infinite;
+    }
+    
+    .hero-decor-2 {
+      width: 300px;
+      height: 300px;
+      background: var(--ice);
+      opacity: 0.08;
+      bottom: 10%;
+      right: 10%;
+      animation: float 10s ease-in-out infinite reverse;
+    }
+    
+    .hero-content {
+      position: relative;
     }
     
     .hero-badge {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      background: var(--secundaria);
-      color: var(--branco);
-      font-size: 13px;
+      gap: 10px;
+      background: var(--white-10);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--white-20);
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: 14px;
       font-weight: 600;
-      padding: 10px 18px;
-      border-radius: 50px;
-      margin-bottom: 20px;
+      padding: 10px 20px;
+      border-radius: var(--radius-full);
+      margin-bottom: 28px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
     }
     
-    .hero h1 {
-      font-size: clamp(2.2rem, 5vw, 3.5rem);
-      font-weight: 900;
-      line-height: 1.1;
-      margin-bottom: 20px;
-      color: var(--branco);
+    .hero-badge::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      background: var(--flame);
+      border-radius: 50%;
+      animation: pulse-glow 2s ease-in-out infinite;
     }
     
-    .hero h1 .destaque {
-      color: var(--secundaria);
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 6vw, 5rem);
+      font-weight: 800;
+      line-height: 1.05;
+      margin-bottom: 24px;
+      letter-spacing: -2px;
+    }
+    
+    .hero-title .highlight {
+      position: relative;
+      display: inline-block;
+    }
+    
+    .hero-title .highlight::after {
+      content: '';
+      position: absolute;
+      bottom: 8px;
+      left: 0;
+      right: 0;
+      height: 16px;
+      background: linear-gradient(90deg, var(--flame) 0%, var(--flame-light) 100%);
+      opacity: 0.3;
+      z-index: -1;
+      border-radius: 4px;
+      transform: skewX(-5deg);
+    }
+    
+    .hero-title .gradient-text {
+      background: linear-gradient(135deg, var(--flame) 0%, var(--flame-light) 50%, var(--ice) 100%);
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: gradient-shift 4s ease infinite;
     }
     
     .hero-desc {
-      font-size: 18px;
-      color: rgba(255,255,255,0.85);
-      margin-bottom: 32px;
+      font-size: 20px;
+      color: var(--white-70);
+      margin-bottom: 40px;
       line-height: 1.7;
-      max-width: 500px;
+      max-width: 540px;
     }
     
-    /* CTAs do Hero */
-    .hero-btns {
+    /* CTAs */
+    .hero-ctas {
       display: flex;
       gap: 16px;
-      margin-bottom: 28px;
+      margin-bottom: 48px;
       flex-wrap: wrap;
     }
     
-    .btn-cta {
+    .btn-primary {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      background: var(--secundaria);
-      color: var(--branco);
+      gap: 12px;
+      background: linear-gradient(135deg, var(--flame) 0%, var(--flame-dark) 100%);
+      color: var(--white);
+      font-family: var(--font-body);
       font-weight: 700;
-      font-size: 16px;
-      padding: 16px 28px;
-      border-radius: var(--radius-btn);
-      transition: all 0.2s;
+      font-size: 17px;
+      padding: 18px 32px;
+      border-radius: var(--radius-md);
       border: none;
       cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 8px 30px var(--flame-glow);
     }
     
-    .btn-cta:hover {
-      background: var(--secundaria-escura);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(249,115,22,0.4);
+    .btn-primary:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 12px 40px var(--flame-glow);
     }
     
-    .btn-outline-light {
+    .btn-primary svg {
+      width: 22px;
+      height: 22px;
+    }
+    
+    .btn-secondary {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      background: transparent;
-      color: var(--branco);
-      font-weight: 600;
-      font-size: 16px;
-      padding: 16px 28px;
-      border-radius: var(--radius-btn);
-      border: 2px solid rgba(255,255,255,0.5);
-      transition: all 0.2s;
-    }
-    
-    .btn-outline-light:hover {
-      background: var(--branco);
-      color: var(--primaria);
-      border-color: var(--branco);
-    }
-    
-    /* Prova Social / Stats */
-    .hero-stats {
-      display: flex;
-      gap: 32px;
-      margin-bottom: 32px;
-    }
-    
-    .hero-stat {
-      text-align: center;
-    }
-    
-    .hero-stat strong {
-      display: block;
-      font-size: 24px;
-      font-weight: 800;
-      color: var(--secundaria);
-    }
-    
-    .hero-stat span {
-      font-size: 13px;
-      color: rgba(255,255,255,0.7);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-    
-    /* Busca por cidade */
-    .hero-search {
-      background: var(--branco);
-      border-radius: var(--radius);
-      padding: 8px;
-      display: flex;
-      gap: 8px;
-      max-width: 500px;
-      box-shadow: var(--shadow-hover);
-    }
-    
-    .hero-search select {
-      flex: 1;
-      padding: 16px 20px;
-      border: none;
-      font-size: 16px;
-      font-family: inherit;
-      color: var(--cinza-texto);
-      background: var(--cinza-bg);
-      border-radius: var(--radius-btn);
-      cursor: pointer;
-    }
-    
-    .hero-search button {
-      background: var(--secundaria);
-      color: var(--branco);
-      border: none;
-      padding: 16px 28px;
-      font-size: 16px;
-      font-weight: 700;
-      border-radius: var(--radius-btn);
-      cursor: pointer;
-      transition: all 0.2s;
-      font-family: inherit;
-    }
-    
-    .hero-search button:hover {
-      background: var(--secundaria-escura);
-      transform: translateY(-1px);
-    }
-    
-    /* Cards de produtos no hero */
-    .hero-products {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-    
-    .product-card {
-      background: rgba(255,255,255,0.1);
+      gap: 12px;
+      background: var(--white-10);
       backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,255,255,0.2);
-      border-radius: var(--radius);
-      padding: 24px;
-      text-align: center;
+      color: var(--white);
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 17px;
+      padding: 18px 32px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--white-20);
+      cursor: pointer;
       transition: all 0.3s;
     }
     
-    .product-card:hover {
-      background: rgba(255,255,255,0.15);
-      transform: translateY(-5px);
+    .btn-secondary:hover {
+      background: var(--white-20);
+      border-color: var(--white-50);
+      transform: translateY(-2px);
     }
     
-    .product-icon {
-      font-size: 48px;
-      margin-bottom: 12px;
+    /* Stats row */
+    .hero-stats {
+      display: flex;
+      gap: 48px;
+      padding-top: 32px;
+      border-top: 1px solid var(--white-10);
     }
     
-    .product-name {
-      font-size: 18px;
+    .hero-stat {
+      text-align: left;
+    }
     
-    /* Imagem do botijão no hero */
-    .hero-img {
+    .hero-stat-value {
+      font-family: var(--font-display);
+      font-size: 36px;
+      font-weight: 800;
+      color: var(--flame);
+      letter-spacing: -1px;
+    }
+    
+    .hero-stat-label {
+      font-size: 14px;
+      color: var(--white-50);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 4px;
+    }
+    
+    /* Hero Visual Side */
+    .hero-visual {
       position: relative;
       display: flex;
       justify-content: center;
       align-items: center;
     }
     
-    .hero-img img {
-      max-height: 400px;
-      width: auto;
-      filter: drop-shadow(0 30px 60px rgba(0,0,0,0.3));
-      animation: float 4s ease-in-out infinite;
-    }
-    
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-15px); }
-    }
-    
-    .hero-img-badge {
+    /* Glowing ring behind product */
+    .hero-glow-ring {
       position: absolute;
-      bottom: 30px;
-      right: 0;
-      background: var(--branco);
-      padding: 16px 24px;
-      border-radius: var(--radius);
-      box-shadow: var(--shadow-hover);
+      width: 380px;
+      height: 380px;
+      border-radius: 50%;
+      background: conic-gradient(from 0deg, var(--flame), var(--ice), var(--flame));
+      opacity: 0.2;
+      filter: blur(40px);
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    .hero-product {
+      position: relative;
+      z-index: 2;
+    }
+    
+    .hero-product img {
+      max-height: 480px;
+      width: auto;
+      filter: drop-shadow(0 40px 80px rgba(0,0,0,0.5));
+      animation: float 5s ease-in-out infinite;
+    }
+    
+    /* Price tag */
+    .hero-price-tag {
+      position: absolute;
+      bottom: 40px;
+      right: -20px;
+      background: var(--white);
+      padding: 20px 28px;
+      border-radius: var(--radius-lg);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
       text-align: center;
+      z-index: 3;
+      animation: scale-in 0.6s ease-out 0.5s forwards;
+      opacity: 0;
     }
     
-    .hero-img-preco {
-      display: block;
+    .hero-price-label {
       font-size: 12px;
-      color: var(--cinza-sub);
       font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-    
-    .hero-img-valor {
-      display: block;
-      font-size: 28px;
-      font-weight: 900;
-      color: var(--secundaria);
-    }
-      font-weight: 800;
-      margin-bottom: 4px;
-    }
-    
-    .product-desc {
-      font-size: 12px;
-      color: rgba(255,255,255,0.7);
-      margin-bottom: 12px;
-    }
-    
-    .product-price {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--secundaria);
-    }
-    
-    /* ══════════════════════════════════════════════════════════════
-       BADGES / CREDENCIAIS
-       ══════════════════════════════════════════════════════════════ */
-    .badges {
-      background: var(--branco);
-      padding: 20px;
-      border-bottom: 1px solid var(--borda);
-    }
-    
-    .badges-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: center;
-      gap: 40px;
-      flex-wrap: wrap;
-    }
-    
-    .badge-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--primaria);
-    }
-    
-    .badge-item svg {
-      width: 22px;
-      height: 22px;
-      fill: var(--primaria);
-    }
-    
-    /* ══════════════════════════════════════════════════════════════
-       SEÇÕES
-       ══════════════════════════════════════════════════════════════ */
-    section {
-      padding: 80px 20px;
-    }
-    
-    .section-header {
-      text-align: center;
-      max-width: 700px;
-      margin: 0 auto 50px;
-    }
-    
-    .section-tag {
-      display: inline-block;
-      background: var(--primaria-bg);
-      color: var(--primaria);
-      font-size: 12px;
-      font-weight: 700;
-      padding: 8px 16px;
-      border-radius: 50px;
-      margin-bottom: 16px;
+      color: var(--gray-600);
       text-transform: uppercase;
       letter-spacing: 1px;
     }
     
-    .section-title {
-      font-size: clamp(1.8rem, 3vw, 2.5rem);
+    .hero-price-value {
+      font-family: var(--font-display);
+      font-size: 32px;
       font-weight: 800;
-      color: var(--cinza-texto);
-      margin-bottom: 12px;
+      color: var(--flame);
+      letter-spacing: -1px;
     }
     
-    .section-sub {
-      font-size: 17px;
-      color: var(--cinza-sub);
+    /* Search Box */
+    .hero-search {
+      position: absolute;
+      bottom: -40px;
+      left: 0;
+      right: 0;
+      max-width: 700px;
+      margin: 0 auto;
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 8px;
+      display: flex;
+      gap: 8px;
+      box-shadow: 0 25px 80px rgba(0,0,0,0.3);
+      z-index: 10;
     }
     
-    .bg-gray { background: var(--cinza-bg); }
-    .bg-white { background: var(--branco); }
+    .hero-search select {
+      flex: 1;
+      padding: 18px 24px;
+      border: none;
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--gray-900);
+      background: var(--gray-100);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23475569' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+    }
+    
+    .hero-search button {
+      background: linear-gradient(135deg, var(--flame) 0%, var(--flame-dark) 100%);
+      color: var(--white);
+      border: none;
+      padding: 18px 36px;
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 700;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all 0.3s;
+      white-space: nowrap;
+    }
+    
+    .hero-search button:hover {
+      transform: scale(1.03);
+      box-shadow: 0 8px 30px var(--flame-glow);
+    }
     
     /* ══════════════════════════════════════════════════════════════
-       PRODUTOS (P13, P45, P20)
+       TRUST BAR
        ══════════════════════════════════════════════════════════════ */
-    .produtos-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 30px;
+    .trust-bar {
+      background: var(--navy-light);
+      border-top: 1px solid var(--white-10);
+      border-bottom: 1px solid var(--white-10);
+      padding: 60px 24px 24px;
+    }
+    
+    .trust-inner {
       max-width: 1000px;
       margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+      flex-wrap: wrap;
     }
     
-    .produto-card {
-      background: var(--branco);
-      border-radius: var(--radius);
-      padding: 40px 30px;
-      text-align: center;
-      border: 2px solid var(--borda);
-      transition: all 0.3s;
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--white-70);
+    }
+    
+    .trust-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--white-10);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .trust-icon svg {
+      width: 24px;
+      height: 24px;
+      fill: var(--flame);
+    }
+    
+    /* ══════════════════════════════════════════════════════════════
+       SECTION STYLES
+       ══════════════════════════════════════════════════════════════ */
+    section {
+      padding: 100px 24px;
       position: relative;
-      overflow: hidden;
     }
     
-    .produto-card:hover {
-      border-color: var(--primaria);
-      transform: translateY(-5px);
-      box-shadow: var(--shadow-hover);
+    .section-dark { background: var(--navy); }
+    .section-light { background: var(--navy-light); }
+    
+    .section-header {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 64px;
     }
     
-    .produto-card.destaque {
-      border-color: var(--secundaria);
-    }
-    
-    .produto-card.destaque::before {
-      content: 'Mais Vendido';
-      position: absolute;
-      top: 20px;
-      right: -35px;
-      background: var(--secundaria);
-      color: var(--branco);
-      font-size: 11px;
+    .section-tag {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-size: 13px;
       font-weight: 700;
-      padding: 6px 40px;
-      transform: rotate(45deg);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--flame);
+      margin-bottom: 16px;
+      padding: 8px 20px;
+      background: rgba(255, 107, 53, 0.1);
+      border-radius: var(--radius-full);
+      border: 1px solid rgba(255, 107, 53, 0.2);
     }
     
-    .produto-icon {
-      font-size: 64px;
-      margin-bottom: 20px;
-    }
-    
-    .produto-nome {
-      font-size: 24px;
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3rem);
       font-weight: 800;
-      color: var(--cinza-texto);
-      margin-bottom: 8px;
-    }
-    
-    .produto-peso {
-      font-size: 14px;
-      color: var(--cinza-sub);
+      letter-spacing: -1px;
       margin-bottom: 16px;
     }
     
-    .produto-uso {
-      font-size: 14px;
-      color: var(--primaria);
-      font-weight: 600;
-      margin-bottom: 20px;
-      padding: 10px;
-      background: var(--primaria-bg);
-      border-radius: var(--radius-btn);
-    }
-    
-    .produto-preco {
-      font-size: 14px;
-      color: var(--cinza-sub);
-      margin-bottom: 20px;
-    }
-    
-    .produto-preco strong {
-      font-size: 28px;
-      color: var(--secundaria);
-      font-weight: 800;
-    }
-    
-    .produto-btn {
-      display: block;
-      background: var(--secundaria);
-      color: var(--branco);
-      padding: 14px 24px;
-      border-radius: var(--radius-btn);
-      font-weight: 700;
-      transition: all 0.2s;
-    }
-    
-    .produto-btn:hover {
-      background: var(--secundaria-escura);
-      transform: translateY(-2px);
+    .section-subtitle {
+      font-size: 18px;
+      color: var(--white-70);
     }
     
     /* ══════════════════════════════════════════════════════════════
-       CIDADES / ESTADOS
+       PRODUCTS GRID
        ══════════════════════════════════════════════════════════════ */
-    .estados-grid {
+    .products-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 24px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
       max-width: 1200px;
       margin: 0 auto;
     }
     
-    .estado-card {
-      background: var(--branco);
-      border-radius: var(--radius);
-      padding: 28px;
-      border: 1px solid var(--borda);
-      transition: all 0.3s;
+    .product-card {
+      background: var(--white-05);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--white-10);
+      border-radius: var(--radius-xl);
+      padding: 40px 32px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
     
-    .estado-card:hover {
-      border-color: var(--primaria);
-      box-shadow: var(--shadow);
+    .product-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--flame) 0%, var(--ice) 100%);
+      opacity: 0;
+      transition: opacity 0.3s;
     }
     
-    .estado-header {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 16px;
-      padding-bottom: 16px;
-      border-bottom: 1px solid var(--borda);
+    .product-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--white-20);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.3);
     }
     
-    .estado-sigla {
-      width: 48px;
-      height: 48px;
-      background: var(--primaria);
-      color: var(--branco);
-      border-radius: 12px;
+    .product-card:hover::before {
+      opacity: 1;
+    }
+    
+    .product-card.featured {
+      background: linear-gradient(135deg, rgba(255, 107, 53, 0.1) 0%, rgba(0, 212, 255, 0.05) 100%);
+      border-color: var(--flame);
+    }
+    
+    .product-card.featured::before {
+      opacity: 1;
+    }
+    
+    .product-badge {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: var(--flame);
+      color: var(--white);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: var(--radius-full);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .product-icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 24px;
+      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
+      font-size: 40px;
+    }
+    
+    .product-icon.blue { background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); }
+    .product-icon.orange { background: linear-gradient(135deg, var(--flame) 0%, var(--flame-dark) 100%); }
+    .product-icon.yellow { background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); }
+    
+    .product-name {
+      font-family: var(--font-display);
+      font-size: 28px;
       font-weight: 800;
-      font-size: 16px;
+      margin-bottom: 8px;
+      letter-spacing: -0.5px;
     }
     
-    .estado-nome {
-      font-size: 18px;
+    .product-weight {
+      font-size: 15px;
+      color: var(--white-50);
+      margin-bottom: 20px;
+    }
+    
+    .product-use {
+      display: inline-block;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--flame);
+      background: rgba(255, 107, 53, 0.1);
+      padding: 10px 20px;
+      border-radius: var(--radius-full);
+      margin-bottom: 24px;
+    }
+    
+    .product-price {
+      font-size: 15px;
+      color: var(--white-50);
+      margin-bottom: 24px;
+    }
+    
+    .product-price strong {
+      font-family: var(--font-display);
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -1px;
+    }
+    
+    .product-btn {
+      display: block;
+      background: var(--white-10);
+      color: var(--white);
+      padding: 16px 24px;
+      border-radius: var(--radius-md);
       font-weight: 700;
-      color: var(--cinza-texto);
+      transition: all 0.3s;
+      border: 1px solid var(--white-10);
     }
     
-    .estado-cidades {
+    .product-btn:hover {
+      background: var(--flame);
+      border-color: var(--flame);
+      transform: scale(1.02);
+    }
+    
+    /* ══════════════════════════════════════════════════════════════
+       CITIES / STATES
+       ══════════════════════════════════════════════════════════════ */
+    .states-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    .state-card {
+      background: var(--white-05);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--white-10);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      transition: all 0.3s;
+    }
+    
+    .state-card:hover {
+      border-color: var(--flame);
+      transform: translateY(-4px);
+    }
+    
+    .state-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--white-10);
+    }
+    
+    .state-abbr {
+      width: 56px;
+      height: 56px;
+      background: linear-gradient(135deg, var(--flame) 0%, var(--flame-dark) 100%);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 18px;
+      box-shadow: 0 8px 20px var(--flame-glow);
+    }
+    
+    .state-name {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 700;
+    }
+    
+    .state-cities {
       display: flex;
       flex-direction: column;
       gap: 8px;
     }
     
-    .cidade-link {
+    .city-link {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 10px 14px;
-      background: var(--cinza-bg);
-      border-radius: var(--radius-btn);
-      font-size: 14px;
+      padding: 14px 18px;
+      background: var(--white-05);
+      border-radius: var(--radius-md);
+      font-size: 15px;
       font-weight: 500;
-      color: var(--cinza-texto);
+      color: var(--white-70);
+      transition: all 0.2s;
+      border: 1px solid transparent;
+    }
+    
+    .city-link:hover {
+      background: var(--white-10);
+      color: var(--white);
+      border-color: var(--white-10);
+      padding-left: 24px;
+    }
+    
+    .city-link::after {
+      content: '→';
+      color: var(--flame);
+      font-weight: 700;
+      opacity: 0;
+      transform: translateX(-10px);
       transition: all 0.2s;
     }
     
-    .cidade-link:hover {
-      background: var(--primaria-bg);
-      color: var(--primaria);
-    }
-    
-    .cidade-link::after {
-      content: '→';
-      color: var(--primaria);
-      font-weight: 700;
+    .city-link:hover::after {
+      opacity: 1;
+      transform: translateX(0);
     }
     
     /* ══════════════════════════════════════════════════════════════
-       COMO FUNCIONA
+       HOW IT WORKS
        ══════════════════════════════════════════════════════════════ */
     .steps-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 30px;
-      max-width: 1000px;
+      gap: 32px;
+      max-width: 1200px;
       margin: 0 auto;
+      position: relative;
+    }
+    
+    .steps-grid::before {
+      content: '';
+      position: absolute;
+      top: 50px;
+      left: 12%;
+      right: 12%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--flame) 0%, var(--ice) 100%);
+      opacity: 0.3;
     }
     
     .step-card {
       text-align: center;
       position: relative;
-    }
-    
-    .step-card:not(:last-child)::after {
-      content: '';
-      position: absolute;
-      top: 35px;
-      right: -15px;
-      width: 30px;
-      height: 2px;
-      background: var(--borda);
+      z-index: 1;
     }
     
     .step-num {
-      width: 70px;
-      height: 70px;
-      background: var(--primaria);
-      color: var(--branco);
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 28px;
+      background: var(--navy);
+      border: 3px solid var(--flame);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
+      font-family: var(--font-display);
+      font-size: 36px;
       font-weight: 800;
-      font-size: 24px;
-      margin: 0 auto 20px;
-      box-shadow: 0 8px 20px rgba(12,74,110,0.3);
+      color: var(--flame);
+      position: relative;
+    }
+    
+    .step-num::after {
+      content: '';
+      position: absolute;
+      inset: -8px;
+      border: 1px solid var(--flame);
+      border-radius: 50%;
+      opacity: 0.3;
     }
     
     .step-card h3 {
-      font-size: 17px;
+      font-family: var(--font-display);
+      font-size: 20px;
       font-weight: 700;
-      color: var(--cinza-texto);
-      margin-bottom: 8px;
+      margin-bottom: 12px;
     }
     
     .step-card p {
-      font-size: 14px;
-      color: var(--cinza-sub);
+      font-size: 15px;
+      color: var(--white-50);
+      line-height: 1.6;
     }
     
     /* ══════════════════════════════════════════════════════════════
@@ -783,11 +1017,16 @@
     }
     
     .faq-item {
-      background: var(--branco);
-      border: 1px solid var(--borda);
-      border-radius: var(--radius);
-      margin-bottom: 12px;
+      background: var(--white-05);
+      border: 1px solid var(--white-10);
+      border-radius: var(--radius-lg);
+      margin-bottom: 16px;
       overflow: hidden;
+      transition: all 0.3s;
+    }
+    
+    .faq-item:hover {
+      border-color: var(--white-20);
     }
     
     .faq-btn {
@@ -795,22 +1034,22 @@
       text-align: left;
       background: none;
       border: none;
-      padding: 20px 24px;
-      font-size: 16px;
+      padding: 24px 28px;
+      font-family: var(--font-body);
+      font-size: 17px;
       font-weight: 700;
-      color: var(--cinza-texto);
+      color: var(--white);
       cursor: pointer;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-family: inherit;
     }
     
     .faq-btn::after {
       content: '+';
-      font-size: 24px;
-      font-weight: 400;
-      color: var(--primaria);
+      font-size: 28px;
+      font-weight: 300;
+      color: var(--flame);
       transition: transform 0.3s;
     }
     
@@ -821,67 +1060,82 @@
     .faq-content {
       max-height: 0;
       overflow: hidden;
-      transition: max-height 0.3s ease;
+      transition: max-height 0.4s ease;
     }
     
     .faq-item.open .faq-content {
-      max-height: 500px;
+      max-height: 300px;
     }
     
     .faq-content p {
-      padding: 0 24px 20px;
-      font-size: 15px;
-      color: var(--cinza-sub);
+      padding: 0 28px 24px;
+      font-size: 16px;
+      color: var(--white-70);
       line-height: 1.7;
     }
     
     /* ══════════════════════════════════════════════════════════════
-       CTA FINAL
+       CTA SECTION
        ══════════════════════════════════════════════════════════════ */
-    .cta-final {
-      background: linear-gradient(135deg, var(--primaria) 0%, var(--primaria-escura) 100%);
-      padding: 80px 20px;
+    .cta-section {
+      background: linear-gradient(135deg, var(--flame) 0%, var(--flame-dark) 100%);
+      padding: 100px 24px;
       text-align: center;
-      color: var(--branco);
+      position: relative;
+      overflow: hidden;
     }
     
-    .cta-final h2 {
-      font-size: clamp(1.8rem, 3vw, 2.5rem);
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 50%, rgba(0,0,0,0.1) 0%, transparent 50%);
+    }
+    
+    .cta-content {
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    
+    .cta-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3rem);
       font-weight: 800;
-      margin-bottom: 16px;
+      margin-bottom: 20px;
+      letter-spacing: -1px;
     }
     
-    .cta-final p {
-      font-size: 18px;
-      color: rgba(255,255,255,0.85);
-      margin-bottom: 32px;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
+    .cta-text {
+      font-size: 20px;
+      color: var(--white-90);
+      margin-bottom: 40px;
     }
     
-    .btn-wpp {
+    .btn-white {
       display: inline-flex;
       align-items: center;
       gap: 12px;
-      background: var(--verde-wpp);
-      color: var(--branco);
+      background: var(--white);
+      color: var(--flame);
+      font-family: var(--font-body);
       font-weight: 700;
       font-size: 18px;
-      padding: 18px 36px;
-      border-radius: var(--radius-btn);
-      transition: all 0.2s;
-      border: none;
-      cursor: pointer;
+      padding: 20px 40px;
+      border-radius: var(--radius-md);
+      transition: all 0.3s;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
     }
     
-    .btn-wpp:hover {
-      background: #1db954;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(37,211,102,0.4);
+    .btn-white:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 15px 50px rgba(0,0,0,0.3);
     }
     
-    .btn-wpp svg {
+    .btn-white svg {
       width: 24px;
       height: 24px;
       fill: currentColor;
@@ -891,58 +1145,64 @@
        FOOTER
        ══════════════════════════════════════════════════════════════ */
     footer {
-      background: #0f172a;
-      color: rgba(255,255,255,0.7);
-      padding: 60px 20px 30px;
+      background: var(--gray-900);
+      padding: 80px 24px 40px;
+      border-top: 1px solid var(--white-10);
     }
     
     .footer-inner {
-      max-width: 1200px;
+      max-width: 1400px;
       margin: 0 auto;
     }
     
     .footer-grid {
       display: grid;
       grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 40px;
-      margin-bottom: 40px;
-      padding-bottom: 40px;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
+      gap: 60px;
+      margin-bottom: 60px;
+      padding-bottom: 60px;
+      border-bottom: 1px solid var(--white-10);
     }
     
     .footer-brand {
       display: flex;
       align-items: center;
-      gap: 10px;
-      font-size: 20px;
+      gap: 12px;
+      font-family: var(--font-display);
+      font-size: 24px;
       font-weight: 800;
-      color: var(--branco);
-      margin-bottom: 16px;
+      margin-bottom: 20px;
     }
     
     .footer-desc {
-      font-size: 14px;
+      font-size: 15px;
+      color: var(--white-50);
       line-height: 1.7;
+      max-width: 300px;
     }
     
     .footer-title {
+      font-family: var(--font-display);
       font-size: 14px;
       font-weight: 700;
-      color: var(--branco);
-      margin-bottom: 16px;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
+      letter-spacing: 1px;
+      margin-bottom: 24px;
+      color: var(--white);
     }
     
     .footer-links a {
       display: block;
-      font-size: 14px;
-      color: rgba(255,255,255,0.6);
-      margin-bottom: 10px;
-      transition: color 0.2s;
+      font-size: 15px;
+      color: var(--white-50);
+      margin-bottom: 14px;
+      transition: all 0.2s;
     }
     
-    .footer-links a:hover { color: var(--branco); }
+    .footer-links a:hover {
+      color: var(--flame);
+      padding-left: 8px;
+    }
     
     .footer-bottom {
       display: flex;
@@ -953,8 +1213,35 @@
     }
     
     .footer-legal {
-      font-size: 13px;
-      color: rgba(255,255,255,0.5);
+      font-size: 14px;
+      color: var(--white-50);
+    }
+    
+    .footer-social {
+      display: flex;
+      gap: 12px;
+    }
+    
+    .footer-social a {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--white-10);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+    }
+    
+    .footer-social a:hover {
+      background: var(--flame);
+      transform: translateY(-3px);
+    }
+    
+    .footer-social svg {
+      width: 20px;
+      height: 20px;
+      fill: var(--white);
     }
     
     /* ══════════════════════════════════════════════════════════════
@@ -962,60 +1249,88 @@
        ══════════════════════════════════════════════════════════════ */
     .float-wpp {
       position: fixed;
-      bottom: 30px;
-      right: 30px;
-      width: 60px;
-      height: 60px;
+      bottom: 32px;
+      right: 32px;
+      width: 64px;
+      height: 64px;
       border-radius: 50%;
       background: var(--verde-wpp);
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 6px 20px rgba(37,211,102,0.4);
+      box-shadow: 0 8px 30px rgba(37,211,102,0.4);
       z-index: 999;
       transition: all 0.3s;
+      animation: pulse-glow 2s ease-in-out infinite;
     }
     
     .float-wpp:hover {
-      transform: scale(1.1);
-      box-shadow: 0 8px 25px rgba(37,211,102,0.5);
+      transform: scale(1.1) translateY(-4px);
+      box-shadow: 0 12px 40px rgba(37,211,102,0.5);
     }
     
     .float-wpp svg {
       width: 32px;
       height: 32px;
-      fill: var(--branco);
+      fill: var(--white);
     }
     
     /* ══════════════════════════════════════════════════════════════
-       RESPONSIVO
+       RESPONSIVE
        ══════════════════════════════════════════════════════════════ */
-    @media (max-width: 900px) {
-      .nav-links { display: none; }
-      .hamburger { display: flex; }
+    @media (max-width: 1024px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 60px;
+      }
       
-      .hero-inner { grid-template-columns: 1fr; text-align: center; }
-      .hero-desc { margin: 0 auto 32px; }
-      .hero-btns { justify-content: center; }
+      .hero-desc { margin: 0 auto 40px; }
+      .hero-ctas { justify-content: center; }
       .hero-stats { justify-content: center; }
-      .hero-search { margin: 0 auto; }
-      .hero-img { display: none; }
       
-      .produtos-grid { grid-template-columns: 1fr; max-width: 350px; margin: 0 auto; }
+      .hero-visual { order: -1; }
+      .hero-product img { max-height: 350px; }
+      .hero-price-tag { right: 50%; transform: translateX(50%); }
+      
+      .hero-search {
+        position: relative;
+        bottom: 0;
+        margin-top: 60px;
+      }
+      
+      .products-grid { grid-template-columns: 1fr; max-width: 400px; }
       .steps-grid { grid-template-columns: 1fr 1fr; }
-      .step-card:not(:last-child)::after { display: none; }
+      .steps-grid::before { display: none; }
       .footer-grid { grid-template-columns: 1fr 1fr; }
     }
     
-    @media (max-width: 600px) {
-      .badges-inner { flex-direction: column; align-items: center; gap: 16px; }
-      .hero-btns { flex-direction: column; align-items: center; }
-      .hero-stats { gap: 20px; }
-      .hero-stat strong { font-size: 20px; }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      
+      .hero { padding: 100px 20px 60px; }
+      .hero-title { letter-spacing: -1px; }
+      .hero-stats { gap: 24px; flex-wrap: wrap; }
+      .hero-stat-value { font-size: 28px; }
+      
       .hero-search { flex-direction: column; }
+      .hero-visual { display: none; }
+      
+      .trust-inner { gap: 30px; }
+      .trust-item { font-size: 13px; }
+      
       .steps-grid { grid-template-columns: 1fr; }
-      .footer-grid { grid-template-columns: 1fr; }
-      .float-wpp { bottom: 20px; right: 20px; width: 55px; height: 55px; }
+      .states-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+      
+      .float-wpp { bottom: 20px; right: 20px; width: 56px; height: 56px; }
+    }
+    
+    @media (max-width: 480px) {
+      .hero-ctas { flex-direction: column; align-items: stretch; }
+      .hero-stats { flex-direction: column; gap: 16px; align-items: center; }
+      .hero-stat { text-align: center; }
     }
   </style>
 </head>
@@ -1028,7 +1343,7 @@
   <nav>
     <a href="/" class="logo">
       <div class="logo-icon">🔥</div>
-      GásDeCozinha
+      <div class="logo-text">Gás<span>DeCozinha</span></div>
     </a>
     <ul class="nav-links">
       <li><a href="/">Início</a></li>
@@ -1036,7 +1351,7 @@
       <li><a href="/p45/">Botijão P45</a></li>
       <li><a href="/p20/">Gás P20</a></li>
       <li><a href="/precos/">Preços</a></li>
-      <li><a href="https://wa.me/5567993330303?text=Ol%C3%A1%2C%20vim%20pelo%20site%20GasDeCozinha.com%20e%20quero%20fazer%20um%20pedido" target="_blank" rel="noopener" class="nav-wpp">WhatsApp</a></li>
+      <li><a href="https://wa.me/5567993330303?text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20quero%20fazer%20um%20pedido" target="_blank" rel="noopener" class="nav-cta">WhatsApp</a></li>
     </ul>
     <button class="hamburger" id="hamburger" aria-label="Menu">
       <span></span><span></span><span></span>
@@ -1048,7 +1363,7 @@
     <a href="/p45/">Botijão P45</a>
     <a href="/p20/">Gás P20</a>
     <a href="/precos/">Preços</a>
-    <a href="https://wa.me/5567993330303?text=Ol%C3%A1%2C%20vim%20pelo%20site%20GasDeCozinha.com" target="_blank" rel="noopener">📲 WhatsApp</a>
+    <a href="https://wa.me/5567993330303" target="_blank" rel="noopener">📲 WhatsApp</a>
   </div>
 </header>
 
@@ -1056,102 +1371,121 @@
      HERO
      ══════════════════════════════════════════════════════════════ -->
 <section class="hero">
+  <div class="hero-decor hero-decor-1"></div>
+  <div class="hero-decor hero-decor-2"></div>
+  
   <div class="hero-inner">
-    <div class="hero-text">
-      <div class="hero-badge">🇧🇷 Portal Nacional de Gás de Cozinha</div>
-      <h1><span class="destaque">Gás de Cozinha</span> Perto de Você</h1>
-      <p class="hero-desc">Encontre distribuidoras de gás na sua cidade. Botijão P13, P45 e P20 com entrega rápida. Compare preços e peça pelo WhatsApp.</p>
+    <div class="hero-content">
+      <div class="hero-badge animate-up delay-1">Portal Nacional de Gás</div>
       
-      <!-- CTAs -->
-      <div class="hero-btns">
-        <a class="btn-cta" href="https://wa.me/5567993330303?text=Ol%C3%A1%2C%20vim%20pelo%20site%20GasDeCozinha.com%20e%20quero%20fazer%20um%20pedido" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.107.548 4.086 1.508 5.806L0 24l6.362-1.481A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+      <h1 class="hero-title animate-up delay-2">
+        <span class="highlight">Gás de Cozinha</span><br>
+        <span class="gradient-text">Perto de Você</span>
+      </h1>
+      
+      <p class="hero-desc animate-up delay-3">
+        Encontre distribuidoras de gás na sua cidade. Botijão P13, P45 e P20 com entrega rápida. Compare preços e peça pelo WhatsApp.
+      </p>
+      
+      <div class="hero-ctas animate-up delay-4">
+        <a href="https://wa.me/5567993330303?text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20quero%20fazer%20um%20pedido" target="_blank" rel="noopener" class="btn-primary">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.107.548 4.086 1.508 5.806L0 24l6.362-1.481A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
           Pedir pelo WhatsApp
         </a>
-        <a class="btn-outline-light" href="tel:+5567993330303">
+        <a href="tel:+5567993330303" class="btn-secondary">
           📞 Ligar Agora
         </a>
       </div>
       
-      <!-- Prova Social -->
-      <div class="hero-stats">
+      <div class="hero-stats animate-up delay-5">
         <div class="hero-stat">
-          <strong>1000+</strong>
-          <span>Cidades</span>
+          <div class="hero-stat-value">1000+</div>
+          <div class="hero-stat-label">Cidades</div>
         </div>
         <div class="hero-stat">
-          <strong>4.9★</strong>
-          <span>Avaliação</span>
+          <div class="hero-stat-value">4.9★</div>
+          <div class="hero-stat-label">Avaliação</div>
         </div>
         <div class="hero-stat">
-          <strong>10+</strong>
-          <span>Anos</span>
+          <div class="hero-stat-value">10+</div>
+          <div class="hero-stat-label">Anos</div>
         </div>
-      </div>
-      
-      <div class="hero-search">
-        <select id="cidade-select">
-          <option value="">Selecione sua cidade...</option>
-          <optgroup label="Centro-Oeste">
-            <option value="/ms/campo-grande/">Campo Grande - MS</option>
-            <option value="/ms/dourados/">Dourados - MS</option>
-            <option value="/mt/cuiaba/">Cuiabá - MT</option>
-            <option value="/go/goiania/">Goiânia - GO</option>
-            <option value="/df/brasilia/">Brasília - DF</option>
-          </optgroup>
-          <optgroup label="Sudeste">
-            <option value="/sp/sao-paulo/">São Paulo - SP</option>
-            <option value="/rj/rio-de-janeiro/">Rio de Janeiro - RJ</option>
-            <option value="/mg/belo-horizonte/">Belo Horizonte - MG</option>
-          </optgroup>
-          <optgroup label="Sul">
-            <option value="/pr/curitiba/">Curitiba - PR</option>
-            <option value="/sc/florianopolis/">Florianópolis - SC</option>
-            <option value="/rs/porto-alegre/">Porto Alegre - RS</option>
-          </optgroup>
-          <optgroup label="Nordeste">
-            <option value="/ba/salvador/">Salvador - BA</option>
-            <option value="/pe/recife/">Recife - PE</option>
-            <option value="/ce/fortaleza/">Fortaleza - CE</option>
-          </optgroup>
-          <optgroup label="Norte">
-            <option value="/am/manaus/">Manaus - AM</option>
-            <option value="/pa/belem/">Belém - PA</option>
-          </optgroup>
-        </select>
-        <button onclick="irParaCidade()">Buscar</button>
       </div>
     </div>
     
-    <div class="hero-img">
-      <img src="/images/botijao-p13.webp" alt="Botijão de Gás P13" width="350" height="400" loading="eager">
-      <div class="hero-img-badge">
-        <span class="hero-img-preco">P13 a partir de</span>
-        <span class="hero-img-valor">R$ 95</span>
+    <div class="hero-visual">
+      <div class="hero-glow-ring"></div>
+      <div class="hero-product">
+        <img src="/images/botijao-p13.webp" alt="Botijão de Gás P13" width="350" height="450" loading="eager">
+        <div class="hero-price-tag">
+          <div class="hero-price-label">P13 a partir de</div>
+          <div class="hero-price-value">R$ 95</div>
+        </div>
       </div>
     </div>
+  </div>
+  
+  <div class="hero-search">
+    <select id="cidade-select">
+      <option value="">🔍 Selecione sua cidade...</option>
+      <optgroup label="Centro-Oeste">
+        <option value="/ms/campo-grande/">Campo Grande - MS</option>
+        <option value="/ms/dourados/">Dourados - MS</option>
+        <option value="/mt/cuiaba/">Cuiabá - MT</option>
+        <option value="/go/goiania/">Goiânia - GO</option>
+        <option value="/df/brasilia/">Brasília - DF</option>
+      </optgroup>
+      <optgroup label="Sudeste">
+        <option value="/sp/sao-paulo/">São Paulo - SP</option>
+        <option value="/rj/rio-de-janeiro/">Rio de Janeiro - RJ</option>
+        <option value="/mg/belo-horizonte/">Belo Horizonte - MG</option>
+      </optgroup>
+      <optgroup label="Sul">
+        <option value="/pr/curitiba/">Curitiba - PR</option>
+        <option value="/sc/florianopolis/">Florianópolis - SC</option>
+        <option value="/rs/porto-alegre/">Porto Alegre - RS</option>
+      </optgroup>
+      <optgroup label="Nordeste">
+        <option value="/ba/salvador/">Salvador - BA</option>
+        <option value="/pe/recife/">Recife - PE</option>
+        <option value="/ce/fortaleza/">Fortaleza - CE</option>
+      </optgroup>
+      <optgroup label="Norte">
+        <option value="/am/manaus/">Manaus - AM</option>
+        <option value="/pa/belem/">Belém - PA</option>
+      </optgroup>
+    </select>
+    <button onclick="irParaCidade()">Buscar Distribuidora</button>
   </div>
 </section>
 
 <!-- ══════════════════════════════════════════════════════════════
-     BADGES
+     TRUST BAR
      ══════════════════════════════════════════════════════════════ -->
-<div class="badges">
-  <div class="badges-inner">
-    <div class="badge-item">
-      <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+<div class="trust-bar">
+  <div class="trust-inner">
+    <div class="trust-item">
+      <div class="trust-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+      </div>
       Todo o Brasil
     </div>
-    <div class="badge-item">
-      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2" stroke="#fff" stroke-width="2" fill="none"/></svg>
+    <div class="trust-item">
+      <div class="trust-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+      </div>
       Entrega Rápida
     </div>
-    <div class="badge-item">
-      <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+    <div class="trust-item">
+      <div class="trust-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+      </div>
       Botijões Lacrados
     </div>
-    <div class="badge-item">
-      <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+    <div class="trust-item">
+      <div class="trust-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+      </div>
       +1000 Cidades
     </div>
   </div>
@@ -1160,186 +1494,113 @@
 <!-- ══════════════════════════════════════════════════════════════
      PRODUTOS
      ══════════════════════════════════════════════════════════════ -->
-<section class="bg-white">
-  <div class="container">
-    <div class="section-header">
-      <span class="section-tag">Produtos</span>
-      <h2 class="section-title">Tipos de Botijão de Gás</h2>
-      <p class="section-sub">Escolha o botijão ideal para sua necessidade</p>
+<section class="section-dark">
+  <div class="section-header">
+    <span class="section-tag">Produtos</span>
+    <h2 class="section-title">Tipos de Botijão de Gás</h2>
+    <p class="section-subtitle">Escolha o botijão ideal para sua necessidade</p>
+  </div>
+  
+  <div class="products-grid">
+    <div class="product-card featured">
+      <div class="product-badge">Mais Vendido</div>
+      <div class="product-icon blue">🔵</div>
+      <div class="product-name">Botijão P13</div>
+      <div class="product-weight">13 quilos de GLP</div>
+      <div class="product-use">🏠 Uso Residencial</div>
+      <div class="product-price">A partir de <strong>R$ 95</strong></div>
+      <a href="/p13/" class="product-btn">Ver Preços</a>
     </div>
     
-    <div class="produtos-grid">
-      <div class="produto-card destaque">
-        <div class="produto-icon">🔵</div>
-        <div class="produto-nome">Botijão P13</div>
-        <div class="produto-peso">13 quilos de GLP</div>
-        <div class="produto-uso">🏠 Uso Residencial</div>
-        <div class="produto-preco">A partir de <strong>R$ 95</strong></div>
-        <a href="/p13/" class="produto-btn">Ver Preços por Cidade</a>
-      </div>
-      
-      <div class="produto-card">
-        <div class="produto-icon">🟠</div>
-        <div class="produto-nome">Botijão P45</div>
-        <div class="produto-peso">45 quilos de GLP</div>
-        <div class="produto-uso">🍳 Uso Comercial</div>
-        <div class="produto-preco">A partir de <strong>R$ 380</strong></div>
-        <a href="/p45/" class="produto-btn">Ver Preços por Cidade</a>
-      </div>
-      
-      <div class="produto-card">
-        <div class="produto-icon">🟡</div>
-        <div class="produto-nome">Gás P20</div>
-        <div class="produto-peso">20 quilos de GLP</div>
-        <div class="produto-uso">🚜 Empilhadeiras</div>
-        <div class="produto-preco">A partir de <strong>R$ 180</strong></div>
-        <a href="/p20/" class="produto-btn">Ver Preços por Cidade</a>
-      </div>
+    <div class="product-card">
+      <div class="product-icon orange">🟠</div>
+      <div class="product-name">Botijão P45</div>
+      <div class="product-weight">45 quilos de GLP</div>
+      <div class="product-use">🍳 Uso Comercial</div>
+      <div class="product-price">A partir de <strong>R$ 380</strong></div>
+      <a href="/p45/" class="product-btn">Ver Preços</a>
+    </div>
+    
+    <div class="product-card">
+      <div class="product-icon yellow">🟡</div>
+      <div class="product-name">Gás P20</div>
+      <div class="product-weight">20 quilos de GLP</div>
+      <div class="product-use">🚜 Empilhadeiras</div>
+      <div class="product-price">A partir de <strong>R$ 180</strong></div>
+      <a href="/p20/" class="product-btn">Ver Preços</a>
     </div>
   </div>
 </section>
 
 <!-- ══════════════════════════════════════════════════════════════
-     CIDADES / ESTADOS
+     CIDADES
      ══════════════════════════════════════════════════════════════ -->
-<section class="bg-gray">
-  <div class="container">
-    <div class="section-header">
-      <span class="section-tag">Cobertura Nacional</span>
-      <h2 class="section-title">Gás de Cozinha por Estado</h2>
-      <p class="section-sub">Encontre distribuidoras na sua região</p>
+<section class="section-light">
+  <div class="section-header">
+    <span class="section-tag">Cobertura</span>
+    <h2 class="section-title">Encontre Gás na Sua Cidade</h2>
+    <p class="section-subtitle">Atendemos todo o Brasil com distribuidoras parceiras</p>
+  </div>
+  
+  <div class="states-grid">
+    <div class="state-card">
+      <div class="state-header">
+        <div class="state-abbr">MS</div>
+        <div class="state-name">Mato Grosso do Sul</div>
+      </div>
+      <div class="state-cities">
+        <a href="/ms/campo-grande/" class="city-link">Campo Grande</a>
+        <a href="/ms/dourados/" class="city-link">Dourados</a>
+      </div>
     </div>
     
-    <div class="estados-grid">
-      <!-- CENTRO-OESTE (Prioridade) -->
-      <div class="estado-card">
-        <div class="estado-header">
-          <div class="estado-sigla">MS</div>
-          <div class="estado-nome">Mato Grosso do Sul</div>
-        </div>
-        <div class="estado-cidades">
-          <a href="/ms/campo-grande/" class="cidade-link">Campo Grande</a>
-          <a href="/ms/dourados/" class="cidade-link">Dourados</a>
-          <a href="/ms/tres-lagoas/" class="cidade-link">Três Lagoas</a>
-        </div>
+    <div class="state-card">
+      <div class="state-header">
+        <div class="state-abbr">MT</div>
+        <div class="state-name">Mato Grosso</div>
       </div>
-      
-      <div class="estado-card">
-        <div class="estado-header">
-          <div class="estado-sigla">MT</div>
-          <div class="estado-nome">Mato Grosso</div>
-        </div>
-        <div class="estado-cidades">
-          <a href="/mt/cuiaba/" class="cidade-link">Cuiabá</a>
-          <a href="/mt/varzea-grande/" class="cidade-link">Várzea Grande</a>
-          <a href="/mt/rondonopolis/" class="cidade-link">Rondonópolis</a>
-          <a href="/mt/sinop/" class="cidade-link">Sinop</a>
-        </div>
+      <div class="state-cities">
+        <a href="/mt/cuiaba/" class="city-link">Cuiabá</a>
       </div>
-      
-      <div class="estado-card">
-        <div class="estado-header">
-          <div class="estado-sigla">GO</div>
-          <div class="estado-nome">Goiás</div>
-        </div>
-        <div class="estado-cidades">
-          <a href="/go/goiania/" class="cidade-link">Goiânia</a>
-          <a href="/go/aparecida-de-goiania/" class="cidade-link">Aparecida de Goiânia</a>
-          <a href="/go/anapolis/" class="cidade-link">Anápolis</a>
-        </div>
+    </div>
+    
+    <div class="state-card">
+      <div class="state-header">
+        <div class="state-abbr">GO</div>
+        <div class="state-name">Goiás</div>
       </div>
-      
-      <div class="estado-card">
-        <div class="estado-header">
-          <div class="estado-sigla">DF</div>
-          <div class="estado-nome">Distrito Federal</div>
-        </div>
-        <div class="estado-cidades">
-          <a href="/df/brasilia/" class="cidade-link">Brasília</a>
-        </div>
+      <div class="state-cities">
+        <a href="/go/goiania/" class="city-link">Goiânia</a>
       </div>
-      
-      <!-- SUDESTE -->
-      <div class="estado-card">
-        <div class="estado-header">
-          <div class="estado-sigla">SP</div>
-          <div class="estado-nome">São Paulo</div>
-        </div>
-        <div class="estado-cidades">
-          <a href="/sp/sao-paulo/" class="cidade-link">São Paulo</a>
-        </div>
+    </div>
+    
+    <div class="state-card">
+      <div class="state-header">
+        <div class="state-abbr">DF</div>
+        <div class="state-name">Distrito Federal</div>
       </div>
-      
-      <div class="estado-card">
-        <div class="estado-header">
-          <div class="estado-sigla">RJ</div>
-          <div class="estado-nome">Rio de Janeiro</div>
-        </div>
-        <div class="estado-cidades">
-          <a href="/rj/rio-de-janeiro/" class="cidade-link">Rio de Janeiro</a>
-        </div>
+      <div class="state-cities">
+        <a href="/df/brasilia/" class="city-link">Brasília</a>
       </div>
-      
-      <div class="estado-card">
-        <div class="estado-header">
-          <div class="estado-sigla">MG</div>
-          <div class="estado-nome">Minas Gerais</div>
-        </div>
-        <div class="estado-cidades">
-          <a href="/mg/belo-horizonte/" class="cidade-link">Belo Horizonte</a>
-        </div>
+    </div>
+    
+    <div class="state-card">
+      <div class="state-header">
+        <div class="state-abbr">SP</div>
+        <div class="state-name">São Paulo</div>
       </div>
-      
-      <!-- SUL -->
-      <div class="estado-card">
-        <div class="estado-header">
-          <div class="estado-sigla">PR</div>
-          <div class="estado-nome">Paraná</div>
-        </div>
-        <div class="estado-cidades">
-          <a href="/pr/curitiba/" class="cidade-link">Curitiba</a>
-        </div>
+      <div class="state-cities">
+        <a href="/sp/sao-paulo/" class="city-link">São Paulo</a>
       </div>
-      
-      <div class="estado-card">
-        <div class="estado-header">
-          <div class="estado-sigla">SC</div>
-          <div class="estado-nome">Santa Catarina</div>
-        </div>
-        <div class="estado-cidades">
-          <a href="/sc/florianopolis/" class="cidade-link">Florianópolis</a>
-        </div>
+    </div>
+    
+    <div class="state-card">
+      <div class="state-header">
+        <div class="state-abbr">RJ</div>
+        <div class="state-name">Rio de Janeiro</div>
       </div>
-      
-      <div class="estado-card">
-        <div class="estado-header">
-          <div class="estado-sigla">RS</div>
-          <div class="estado-nome">Rio Grande do Sul</div>
-        </div>
-        <div class="estado-cidades">
-          <a href="/rs/porto-alegre/" class="cidade-link">Porto Alegre</a>
-        </div>
-      </div>
-      
-      <!-- NORDESTE -->
-      <div class="estado-card">
-        <div class="estado-header">
-          <div class="estado-sigla">BA</div>
-          <div class="estado-nome">Bahia</div>
-        </div>
-        <div class="estado-cidades">
-          <a href="/ba/salvador/" class="cidade-link">Salvador</a>
-        </div>
-      </div>
-      
-      <div class="estado-card">
-        <div class="estado-header">
-          <div class="estado-sigla">PE</div>
-          <div class="estado-nome">Pernambuco</div>
-        </div>
-        <div class="estado-cidades">
-          <a href="/pe/recife/" class="cidade-link">Recife</a>
-        </div>
+      <div class="state-cities">
+        <a href="/rj/rio-de-janeiro/" class="city-link">Rio de Janeiro</a>
       </div>
     </div>
   </div>
@@ -1348,35 +1609,36 @@
 <!-- ══════════════════════════════════════════════════════════════
      COMO FUNCIONA
      ══════════════════════════════════════════════════════════════ -->
-<section class="bg-white">
-  <div class="container">
-    <div class="section-header">
-      <span class="section-tag">Simples e Rápido</span>
-      <h2 class="section-title">Como Funciona</h2>
-      <p class="section-sub">Peça seu gás em poucos minutos</p>
+<section class="section-dark">
+  <div class="section-header">
+    <span class="section-tag">Processo</span>
+    <h2 class="section-title">Como Funciona</h2>
+    <p class="section-subtitle">Pedir gás nunca foi tão fácil</p>
+  </div>
+  
+  <div class="steps-grid">
+    <div class="step-card">
+      <div class="step-num">1</div>
+      <h3>Escolha a Cidade</h3>
+      <p>Selecione sua cidade e veja as distribuidoras disponíveis</p>
     </div>
     
-    <div class="steps-grid">
-      <div class="step-card">
-        <div class="step-num">1</div>
-        <h3>Escolha sua Cidade</h3>
-        <p>Selecione sua cidade na lista ou busque acima</p>
-      </div>
-      <div class="step-card">
-        <div class="step-num">2</div>
-        <h3>Veja os Preços</h3>
-        <p>Compare preços de diferentes distribuidoras</p>
-      </div>
-      <div class="step-card">
-        <div class="step-num">3</div>
-        <h3>Peça pelo WhatsApp</h3>
-        <p>Envie seu pedido direto pelo WhatsApp</p>
-      </div>
-      <div class="step-card">
-        <div class="step-num">4</div>
-        <h3>Receba em Casa</h3>
-        <p>Entrega rápida na sua porta</p>
-      </div>
+    <div class="step-card">
+      <div class="step-num">2</div>
+      <h3>Compare Preços</h3>
+      <p>Veja os preços atualizados de P13, P45 e P20</p>
+    </div>
+    
+    <div class="step-card">
+      <div class="step-num">3</div>
+      <h3>Faça o Pedido</h3>
+      <p>Entre em contato pelo WhatsApp ou telefone</p>
+    </div>
+    
+    <div class="step-card">
+      <div class="step-num">4</div>
+      <h3>Receba em Casa</h3>
+      <p>Entrega rápida e segura no seu endereço</p>
     </div>
   </div>
 </section>
@@ -1384,62 +1646,60 @@
 <!-- ══════════════════════════════════════════════════════════════
      FAQ
      ══════════════════════════════════════════════════════════════ -->
-<section class="bg-gray">
-  <div class="container">
-    <div class="section-header">
-      <span class="section-tag">Dúvidas</span>
-      <h2 class="section-title">Perguntas Frequentes</h2>
-      <p class="section-sub">Tire suas dúvidas sobre gás de cozinha</p>
+<section class="section-light">
+  <div class="section-header">
+    <span class="section-tag">Dúvidas</span>
+    <h2 class="section-title">Perguntas Frequentes</h2>
+    <p class="section-subtitle">Tire suas dúvidas sobre entrega de gás</p>
+  </div>
+  
+  <div class="faq-list">
+    <div class="faq-item">
+      <button class="faq-btn">Qual o preço do botijão P13?</button>
+      <div class="faq-content">
+        <p>O preço do botijão P13 varia de acordo com a cidade e distribuidora, geralmente entre R$ 95 e R$ 130. Selecione sua cidade para ver os preços atualizados.</p>
+      </div>
     </div>
     
-    <div class="faq-list">
-      <div class="faq-item">
-        <button class="faq-btn">Qual a diferença entre P13, P45 e P20?</button>
-        <div class="faq-content">
-          <p>O <strong>P13</strong> (13kg) é o botijão residencial comum, ideal para casas e apartamentos. O <strong>P45</strong> (45kg) é para uso comercial em restaurantes, padarias e indústrias leves. O <strong>P20</strong> (20kg) é específico para empilhadeiras a gás.</p>
-        </div>
+    <div class="faq-item">
+      <button class="faq-btn">Qual o horário de entrega?</button>
+      <div class="faq-content">
+        <p>A maioria das distribuidoras atende de segunda a sábado, das 7h às 18h. Algumas oferecem serviço 24 horas em casos de emergência.</p>
       </div>
-      
-      <div class="faq-item">
-        <button class="faq-btn">Qual o preço médio do gás de cozinha?</button>
-        <div class="faq-content">
-          <p>O preço do botijão P13 varia entre <strong>R$ 95 e R$ 140</strong> dependendo da cidade e região. O P45 fica entre R$ 380 e R$ 500. Os preços são atualizados frequentemente conforme a ANP.</p>
-        </div>
+    </div>
+    
+    <div class="faq-item">
+      <button class="faq-btn">Quais formas de pagamento são aceitas?</button>
+      <div class="faq-content">
+        <p>Aceitamos Pix, dinheiro, cartão de crédito e cartão de débito. O pagamento é realizado no ato da entrega.</p>
       </div>
-      
-      <div class="faq-item">
-        <button class="faq-btn">Como saber se o botijão está cheio?</button>
-        <div class="faq-content">
-          <p>O botijão P13 cheio pesa aproximadamente <strong>29kg</strong> (13kg de gás + 16kg do vasilhame). Você pode conferir na balança. Além disso, o lacre deve estar intacto e o botijão deve ter a tara (peso vazio) marcada.</p>
-        </div>
+    </div>
+    
+    <div class="faq-item">
+      <button class="faq-btn">O botijão vem com nota fiscal?</button>
+      <div class="faq-content">
+        <p>Sim, todas as distribuidoras parceiras emitem nota fiscal eletrônica em todas as entregas.</p>
       </div>
-      
-      <div class="faq-item">
-        <button class="faq-btn">Quanto tempo dura um botijão de gás?</button>
-        <div class="faq-content">
-          <p>Um botijão P13 dura em média <strong>30 a 45 dias</strong> para uma família de 4 pessoas com uso moderado. Para restaurantes, o P45 dura de acordo com o volume de preparo, geralmente 1-2 semanas.</p>
-        </div>
+    </div>
+    
+    <div class="faq-item">
+      <button class="faq-btn">Como faço para trocar o botijão vazio?</button>
+      <div class="faq-content">
+        <p>Basta informar que deseja fazer a troca ao fazer o pedido. O entregador levará o botijão cheio e recolherá o vazio.</p>
       </div>
-      
-      <div class="faq-item">
-        <button class="faq-btn">Vocês entregam em todo o Brasil?</button>
-        <div class="faq-content">
-          <p>Sim! Nosso portal conecta você com distribuidoras em <strong>todas as capitais e principais cidades</strong> do Brasil. Basta selecionar sua cidade e entrar em contato pelo WhatsApp.</p>
-        </div>
+    </div>
+    
+    <div class="faq-item">
+      <button class="faq-btn">Vocês atendem empresas?</button>
+      <div class="faq-content">
+        <p>Sim! Oferecemos botijões P45 para uso comercial e P20 para empilhadeiras. Entre em contato para condições especiais para empresas.</p>
       </div>
-      
-      <div class="faq-item">
-        <button class="faq-btn">Quais formas de pagamento são aceitas?</button>
-        <div class="faq-content">
-          <p>A maioria das distribuidoras aceita <strong>Pix, dinheiro, cartão de crédito e débito</strong>. O pagamento geralmente é feito no ato da entrega. Confirme com a distribuidora da sua cidade.</p>
-        </div>
-      </div>
-      
-      <div class="faq-item">
-        <button class="faq-btn">O botijão vem com nota fiscal?</button>
-        <div class="faq-content">
-          <p>Sim! Distribuidoras regularizadas emitem <strong>nota fiscal eletrônica</strong> em todas as entregas. Isso garante a procedência do gás e seus direitos como consumidor.</p>
-        </div>
+    </div>
+    
+    <div class="faq-item">
+      <button class="faq-btn">A entrega é grátis?</button>
+      <div class="faq-content">
+        <p>A política de entrega varia por distribuidora. Muitas oferecem entrega grátis para pedidos acima de determinado valor ou dentro de uma área específica.</p>
       </div>
     </div>
   </div>
@@ -1448,13 +1708,15 @@
 <!-- ══════════════════════════════════════════════════════════════
      CTA FINAL
      ══════════════════════════════════════════════════════════════ -->
-<section class="cta-final">
-  <h2>Precisa de Gás de Cozinha?</h2>
-  <p>Encontre a distribuidora mais perto de você e peça agora pelo WhatsApp. Entrega rápida em todo o Brasil.</p>
-  <a class="btn-wpp" href="https://wa.me/5567993330303?text=Ol%C3%A1%2C%20vim%20pelo%20site%20GasDeCozinha.com%20e%20quero%20fazer%20um%20pedido" target="_blank" rel="noopener">
-    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.107.548 4.086 1.508 5.806L0 24l6.362-1.481A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
-    Pedir pelo WhatsApp
-  </a>
+<section class="cta-section">
+  <div class="cta-content">
+    <h2 class="cta-title">Precisa de Gás Agora?</h2>
+    <p class="cta-text">Faça seu pedido pelo WhatsApp e receba em minutos</p>
+    <a href="https://wa.me/5567993330303?text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20quero%20fazer%20um%20pedido" target="_blank" rel="noopener" class="btn-white">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.107.548 4.086 1.508 5.806L0 24l6.362-1.481A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+      Pedir pelo WhatsApp
+    </a>
+  </div>
 </section>
 
 <!-- ══════════════════════════════════════════════════════════════
@@ -1464,39 +1726,54 @@
   <div class="footer-inner">
     <div class="footer-grid">
       <div>
-        <div class="footer-brand">🔥 GásDeCozinha</div>
-        <p class="footer-desc">Portal nacional de gás de cozinha. Encontre distribuidoras perto de você com entrega rápida de botijão P13, P45 e P20.</p>
+        <div class="footer-brand">
+          <div class="logo-icon">🔥</div>
+          GásDeCozinha
+        </div>
+        <p class="footer-desc">
+          Portal nacional de gás de cozinha. Encontre distribuidoras, compare preços e peça pelo WhatsApp.
+        </p>
       </div>
+      
       <div>
-        <div class="footer-title">Produtos</div>
+        <div class="footer-title">Navegação</div>
         <div class="footer-links">
+          <a href="/">Início</a>
           <a href="/p13/">Botijão P13</a>
           <a href="/p45/">Botijão P45</a>
-          <a href="/p20/">Gás P20 Empilhadeira</a>
-          <a href="/precos/">Tabela de Preços</a>
+          <a href="/p20/">Gás P20</a>
+          <a href="/precos/">Preços</a>
         </div>
       </div>
+      
       <div>
         <div class="footer-title">Regiões</div>
         <div class="footer-links">
-          <a href="/ms/campo-grande/">Campo Grande - MS</a>
-          <a href="/sp/sao-paulo/">São Paulo - SP</a>
-          <a href="/rj/rio-de-janeiro/">Rio de Janeiro - RJ</a>
-          <a href="/df/brasilia/">Brasília - DF</a>
+          <a href="/ms/campo-grande/">Campo Grande</a>
+          <a href="/sp/sao-paulo/">São Paulo</a>
+          <a href="/rj/rio-de-janeiro/">Rio de Janeiro</a>
+          <a href="/mg/belo-horizonte/">Belo Horizonte</a>
         </div>
       </div>
+      
       <div>
         <div class="footer-title">Contato</div>
         <div class="footer-links">
-          <a href="https://wa.me/5567993330303" target="_blank">📲 WhatsApp</a>
-          <a href="/sobre/">Sobre o Portal</a>
-          <a href="/contato/">Fale Conosco</a>
+          <a href="tel:+5567993330303">📞 (67) 99333-0303</a>
+          <a href="https://wa.me/5567993330303" target="_blank" rel="noopener">💬 WhatsApp</a>
         </div>
       </div>
     </div>
+    
     <div class="footer-bottom">
-      <div class="footer-legal">
-        © 2026 GasDeCozinha.com — Portal de informações sobre gás de cozinha. Não somos distribuidora.
+      <div class="footer-legal">© 2026 GásDeCozinha.com — Todos os direitos reservados</div>
+      <div class="footer-social">
+        <a href="#" aria-label="Facebook">
+          <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+        </a>
+        <a href="#" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+        </a>
       </div>
     </div>
   </div>
@@ -1505,7 +1782,7 @@
 <!-- ══════════════════════════════════════════════════════════════
      FLOAT WHATSAPP
      ══════════════════════════════════════════════════════════════ -->
-<a class="float-wpp" href="https://wa.me/5567993330303?text=Ol%C3%A1%2C%20vim%20pelo%20site%20GasDeCozinha.com" target="_blank" rel="noopener" aria-label="WhatsApp">
+<a class="float-wpp" href="https://wa.me/5567993330303?text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20quero%20fazer%20um%20pedido" target="_blank" rel="noopener" aria-label="WhatsApp">
   <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.107.548 4.086 1.508 5.806L0 24l6.362-1.481A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
 </a>
 
@@ -1528,7 +1805,7 @@
     document.getElementById('mobile-menu').classList.toggle('open');
   });
   
-  // Busca por cidade
+  // City Search
   function irParaCidade() {
     const select = document.getElementById('cidade-select');
     if (select.value) {
@@ -1543,87 +1820,15 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebSite",
-      "name": "Gás de Cozinha",
-      "url": "https://gasdecozinha.com/",
-      "description": "Portal nacional de gás de cozinha. Encontre distribuidoras perto de você com entrega rápida de botijão P13, P45 e P20.",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://gasdecozinha.com/busca/?q={search_term_string}",
-        "query-input": "required name=search_term_string"
-      }
-    },
-    {
-      "@type": "Organization",
-      "name": "Gás de Cozinha",
-      "url": "https://gasdecozinha.com/",
-      "logo": "https://gasdecozinha.com/images/logo.webp",
-      "sameAs": []
-    },
-    {
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Qual a diferença entre P13, P45 e P20?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "O P13 (13kg) é o botijão residencial comum, ideal para casas e apartamentos. O P45 (45kg) é para uso comercial em restaurantes, padarias e indústrias leves. O P20 (20kg) é específico para empilhadeiras a gás."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Qual o preço médio do gás de cozinha?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "O preço do botijão P13 varia entre R$ 95 e R$ 140 dependendo da cidade e região. O P45 fica entre R$ 380 e R$ 500. Os preços são atualizados frequentemente conforme a ANP."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Como saber se o botijão está cheio?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "O botijão P13 cheio pesa aproximadamente 29kg (13kg de gás + 16kg do vasilhame). Você pode conferir na balança. Além disso, o lacre deve estar intacto e o botijão deve ter a tara (peso vazio) marcada."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Quanto tempo dura um botijão de gás?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Um botijão P13 dura em média 30 a 45 dias para uma família de 4 pessoas com uso moderado. Para restaurantes, o P45 dura de acordo com o volume de preparo, geralmente 1-2 semanas."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Vocês entregam em todo o Brasil?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Sim! Nosso portal conecta você com distribuidoras em todas as capitais e principais cidades do Brasil. Basta selecionar sua cidade e entrar em contato pelo WhatsApp."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Quais formas de pagamento são aceitas?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "A maioria das distribuidoras aceita Pix, dinheiro, cartão de crédito e débito. O pagamento geralmente é feito no ato da entrega. Confirme com a distribuidora da sua cidade."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "O botijão vem com nota fiscal?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Sim! Distribuidoras regularizadas emitem nota fiscal eletrônica em todas as entregas. Isso garante a procedência do gás e seus direitos como consumidor."
-          }
-        }
-      ]
-    }
-  ]
+  "@type": "WebSite",
+  "name": "Gás de Cozinha",
+  "url": "https://gasdecozinha.com/",
+  "description": "Portal nacional de gás de cozinha. Encontre distribuidoras, compare preços e peça pelo WhatsApp.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://gasdecozinha.com/busca/?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
 }
 </script>
 
