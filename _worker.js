@@ -5,8 +5,8 @@
  * Mantém o restante servido pelo Pages (site estático)
  */
 
-// IP do servidor WordPress (cPanel)
-const WP_SERVER_IP = '216.172.172.182';
+// Servidor WordPress (registro DNS 'origin' aponta para o IP do cPanel)
+const WP_ORIGIN = 'origin.gasdecozinha.com';
 const WP_DOMAIN = 'gasdecozinha.com';
 
 // Pastas que devem ir para o WordPress
@@ -36,8 +36,8 @@ export default {
     );
     
     if (isWordPress) {
-      // Monta URL para o servidor WordPress usando IP
-      const wpUrl = `http://${WP_SERVER_IP}${path}${url.search}`;
+      // Monta URL para o servidor WordPress
+      const wpUrl = `http://${WP_ORIGIN}${path}${url.search}`;
       
       try {
         const response = await fetch(wpUrl, {
@@ -67,8 +67,8 @@ export default {
           const location = response.headers.get('Location');
           if (location) {
             const newLocation = location
-              .replace(`http://${WP_SERVER_IP}`, `https://${WP_DOMAIN}`)
-              .replace(`https://${WP_SERVER_IP}`, `https://${WP_DOMAIN}`);
+              .replace(`http://${WP_ORIGIN}`, `https://${WP_DOMAIN}`)
+              .replace(`https://${WP_ORIGIN}`, `https://${WP_DOMAIN}`);
             newHeaders.set('Location', newLocation);
           }
         }
