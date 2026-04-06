@@ -28,6 +28,39 @@ export default {
     const url = new URL(request.url);
     const path = url.pathname;
     
+    // DEBUG MODE - acesse /debug-worker para ver status
+    if (path === '/debug-worker') {
+      const testUrl = `http://${WP_ORIGIN}/demo-ultragaz/`;
+      let testResult = '';
+      
+      try {
+        const testResponse = await fetch(testUrl, {
+          method: 'GET',
+          headers: {
+            'Host': WP_DOMAIN,
+            'User-Agent': 'CloudflareWorker/1.0',
+          },
+          redirect: 'manual',
+        });
+        testResult = `Status: ${testResponse.status} ${testResponse.statusText}\nHeaders: ${JSON.stringify(Object.fromEntries(testResponse.headers), null, 2)}`;
+      } catch (error) {
+        testResult = `Error: ${error.message}`;
+      }
+      
+      return new Response(`
+Worker Debug Info
+=================
+WP_ORIGIN: ${WP_ORIGIN}
+WP_DOMAIN: ${WP_DOMAIN}
+Test URL: ${testUrl}
+
+Test Result:
+${testResult}
+      `, {
+        headers: { 'Content-Type': 'text/plain; charset=utf-8' }
+      });
+    }
+    
     // Verifica se deve ir para WordPress
     const isWordPress = WP_PATHS.some(wp => 
       path === wp || 
