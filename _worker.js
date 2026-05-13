@@ -1,8 +1,13 @@
 /**
  * _worker.js — Cloudflare Pages Functions
- * 
+ * Versão: 1.1.0 | Atualizado: 2026-05-13
+ *
  * Redireciona pastas do WordPress para o servidor original
  * Mantém o restante servido pelo Pages (site estático)
+ *
+ * CHANGELOG:
+ * - v1.1.0: Redirect 301 HTTP→HTTPS no topo do handler (evita duplicação no Google)
+ * - v1.0.0: Versão inicial com proxy WordPress + debug endpoint
  */
 
 // Servidor WordPress (registro DNS 'origin' aponta para o IP do cPanel)
@@ -26,6 +31,13 @@ const WP_PATHS = [
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
+
+    // ── 0. REDIRECT HTTP → HTTPS (301) ─────────────────────────────────────
+    // CRITICAL: evita duplicação de indexação no Google
+    if (url.protocol === 'http:') {
+      return Response.redirect('https://' + url.host + url.pathname + url.search, 301);
+    }
+
     const path = url.pathname;
     
     // DEBUG MODE - acesse /debug-worker para ver status
